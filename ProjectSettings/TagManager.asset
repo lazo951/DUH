@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - BulletPlayer
+  - BulletEnemy
   - Vault
   - Wallrun
   - Ledge
