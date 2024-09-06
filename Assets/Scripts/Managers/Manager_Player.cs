@@ -10,7 +10,7 @@ public class Manager_Player : MonoBehaviour
     [Header("Stats")]
     public float health;
     public float maxHealth;
-    public Dictionary<GunTemplate, int> ammo = new Dictionary<GunTemplate, int>();
+    public Dictionary<GunTemplate, int> ammo = new Dictionary<GunTemplate, int>(); 
 
     public void SetupValues()
     {

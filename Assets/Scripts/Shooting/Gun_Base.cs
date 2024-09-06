@@ -7,9 +7,6 @@ public class Gun_Base : MonoBehaviour
 {
     public GunTemplate gun;
 
-    public LayerMask interactLayers;
-    public float proximityRadius;
-
     int bulletsInMagazine;
     bool bulletInChamber = true;
     bool isReloading;
@@ -48,8 +45,33 @@ public class Gun_Base : MonoBehaviour
         bulletInChamber = false;
         bulletsInMagazine--;
 
-        ShootRigidbody(spawnPos);
+        CheckProximity(spawnPos);
         CheckAmmoState();
+    }
+
+    public virtual void CheckProximity(Transform spawnPos)
+    {
+        RaycastHit Hit;
+
+        if (Physics.Raycast(spawnPos.position, spawnPos.forward, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
+        {
+            ShootHitPoint(Hit);
+        }
+        else
+        {
+            ShootRigidbody(spawnPos);
+        }
+    }
+
+    public virtual void ShootRigidbody(Transform spawnPos)
+    {
+        Transform bullet = MainManager.Pooling.TakeBullet();
+        bullet?.GetComponent<Bullet>().StartBullet(spawnPos.position + spawnPos.forward * gun.bulletSpawnDistance, spawnPos.rotation, gun);
+    }
+
+    public virtual void ShootHitPoint(RaycastHit Hit)
+    {
+        Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal);
     }
 
     public void CheckAmmoState()
@@ -63,30 +85,6 @@ public class Gun_Base : MonoBehaviour
             Reload();
         }
     }
-
-    public virtual void ShootRigidbody(Transform spawnPos)
-    {
-        RaycastHit Hit;
-
-        if (Physics.Raycast(spawnPos.position, spawnPos.forward, out Hit, proximityRadius, interactLayers, QueryTriggerInteraction.Ignore))
-        {
-            Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal);
-        }
-        else
-        {
-            Transform bullet = MainManager.Pooling.TakeBullet();
-            bullet?.GetComponent<Bullet>().StartBullet(spawnPos.position + spawnPos.forward * proximityRadius, spawnPos.rotation, gun);
-        }
-    }
-
-    //private void ShootHitscan(Transform spawnPos)
-    //{
-    //    RaycastHit hit;
-    //    Physics.Raycast(spawnPos.position, spawnPos.forward, out hit);
-
-    //    if(hit.collider)
-    //        hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, hit.point, hit.normal);
-    //}
 
     public virtual void Reload()
     {

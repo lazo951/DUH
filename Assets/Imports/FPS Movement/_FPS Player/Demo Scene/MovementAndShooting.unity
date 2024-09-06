@@ -4677,12 +4677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 86c7048267817aa4e83cc24a24fa1220, type: 2}
-  interactLayers:
-    serializedVersion: 2
-    m_Bits: 3841
-  proximityRadius: 0.5
-  numberOfPellets: 12
-  spread: 10
+  numberOfPellets: 9
+  spread: 0.1
 --- !u!1 &785148464
 GameObject:
   m_ObjectHideFlags: 0
@@ -7239,10 +7235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: cebdbdd08d2a46b4da233d43a3e7a8e4, type: 2}
-  interactLayers:
-    serializedVersion: 2
-    m_Bits: 3841
-  proximityRadius: 0.5
 --- !u!23 &1161773361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13679,10 +13671,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 6d840d275446e454ab614e2d22150c8c, type: 2}
-  interactLayers:
-    serializedVersion: 2
-    m_Bits: 3841
-  proximityRadius: 0.5
 --- !u!23 &1900608997
 MeshRenderer:
   m_ObjectHideFlags: 0

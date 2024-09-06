@@ -26,3 +26,8 @@ MonoBehaviour:
   magazineSize: 12
   startAmmoInInventory: 24
   maxAmmo: 120
+  proximityCollisionMask:
+    serializedVersion: 2
+    m_Bits: 3841
+  proximityRadius: 3
+  bulletSpawnDistance: 1

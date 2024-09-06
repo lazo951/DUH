@@ -80,7 +80,6 @@ public class Bullet : MonoBehaviour
         //else
         //    MainManager.Pooling.PlaceDecal(transform.position, normal);
 
-        Debug.Log("Hit object " + hitObject.name);
         hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal);
         gameObject.SetActive(false);
     }

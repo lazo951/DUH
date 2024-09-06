@@ -9,7 +9,6 @@ public class Controller_Shooting : MonoBehaviour
     int previousGun, currentGun;
     [SerializeField] Gun_Base activeGun;
     [SerializeField] Vector3 activePosition, inactivePosition;
-    //[SerializeField] Transform bulletSpawnPosition;
 
     private void Update()
     {

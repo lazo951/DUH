@@ -26,4 +26,9 @@ public class GunTemplate : ScriptableObject
     public int magazineSize;
     public int startAmmoInInventory;
     public int maxAmmo;
+
+    [Header("Proximity Check Settings")]
+    public LayerMask proximityCollisionMask;
+    public float proximityRadius;
+    public float bulletSpawnDistance;
 }
