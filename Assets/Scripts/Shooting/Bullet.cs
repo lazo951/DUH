@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void OnDisable()
     {
-        rb.velocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
         rb.isKinematic = true;
         StopAllCoroutines();
 

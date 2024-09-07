@@ -47,6 +47,8 @@ public class Gun_Base : MonoBehaviour
 
         CheckProximity(spawnPos);
         CheckAmmoState();
+
+        MainManager.Effects.AnimateCrosshair();
     }
 
     public virtual void CheckProximity(Transform spawnPos)

@@ -9,6 +9,10 @@ public class Controller_Shooting : MonoBehaviour
     int previousGun, currentGun;
     [SerializeField] Gun_Base activeGun;
     [SerializeField] Vector3 activePosition, inactivePosition;
+    [SerializeField] float switchSpeed;
+
+    Tween gunUp;
+    Tween gunDown;
 
     private void Update()
     {
@@ -22,20 +26,55 @@ public class Controller_Shooting : MonoBehaviour
             activeGun?.Reload();
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
+        if(Input.GetAxisRaw("Mouse ScrollWheel") != 0f)
         {
-            SwitchGuns();
+            SwitchGunIncrement((Input.GetAxisRaw("Mouse ScrollWheel") > 0f) ? 1 : -1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchGunDirect(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchGunDirect(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SwitchGunDirect(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SwitchGunDirect(3);
         }
     }
 
-    private void SwitchGuns()
+    private void SwitchGunDirect(int num)
     {
+        if (num > availableGuns.Count - 1 || currentGun == num)
+            return;
+
+        gunUp.Kill();
+        gunDown.Kill();
+
         activeGun = null;
-
         previousGun = currentGun;
+        currentGun = num;
 
-        currentGun++;
-        if (currentGun > availableGuns.Count-1)
+        PutGunDown();
+    }
+
+    private void SwitchGunIncrement(int num)
+    {
+        gunUp.Kill();
+        gunDown.Kill();
+
+        activeGun = null;
+        previousGun = currentGun;
+        currentGun += num;
+
+        if(currentGun < 0)
+            currentGun = availableGuns.Count - 1;
+        else if(currentGun > availableGuns.Count - 1)
             currentGun = 0;
 
         PutGunDown();
@@ -43,12 +82,12 @@ public class Controller_Shooting : MonoBehaviour
 
     private void PutGunDown()
     {
-        availableGuns[previousGun].DOLocalMove(inactivePosition, 0.5f).OnComplete(DeactivateGun);
+        gunDown = availableGuns[previousGun].DOLocalMove(inactivePosition, switchSpeed / 2).OnComplete(DeactivateGun);
     }
 
     private void PutGunUp()
     {
-        availableGuns[currentGun].DOLocalMove(activePosition, 0.5f).OnComplete(SetNewGun);
+        gunUp = availableGuns[currentGun].DOLocalMove(activePosition, switchSpeed / 2).OnComplete(SetNewGun);
     }
 
     private void ActivateGun()
