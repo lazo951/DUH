@@ -9,12 +9,15 @@ public class Controller_Crosshair : MonoBehaviour
     [SerializeField] Image up, down, right, left;
     float startUp, startDown, startRight, startLeft;
     float value;
-
-    [SerializeField] float travelTime, maxTravel;
-    [SerializeField] float lingerTime;
-
-    Tween crossAnim;
     bool isShooting;
+    Tween crossAnim;
+    [SerializeField] int maxTravel;
+    [SerializeField] float lingerTime, inBetweenTime, returnTime;
+
+    [SerializeField] Image hitMarker;
+    Tween hitAnim;
+    Color hitMarkerStart;
+    [SerializeField] float markerFadeTime;
 
     private void Start()
     {
@@ -22,6 +25,11 @@ public class Controller_Crosshair : MonoBehaviour
         startDown = down.rectTransform.anchoredPosition.y;
         startRight = right.rectTransform.anchoredPosition.x;
         startLeft = left.rectTransform.anchoredPosition.x;
+
+        hitMarkerStart = hitMarker.color;
+        Color invCol = hitMarkerStart;
+        invCol.a = 0f;
+        hitMarker.color = invCol;
     }
 
     private void Update()
@@ -34,25 +42,40 @@ public class Controller_Crosshair : MonoBehaviour
 
     public void ToggleShooting()
     {
+        value += maxTravel/10;
+        value = Mathf.Clamp(value, 0, maxTravel);
+
         if (!isShooting)
         {
             isShooting = true;
             crossAnim.Kill();
-            crossAnim = DOTween.To(() => value, x => value = x, maxTravel, travelTime).OnComplete(ReturnCrosshair);
+            StartCoroutine(lingerReturn());
         }
     }
 
-    private void ReturnCrosshair()
+    private IEnumerator lingerReturn()
     {
+        yield return new WaitForSeconds(inBetweenTime);
         isShooting = false;
-        StartCoroutine(linger());
+        yield return new WaitForSeconds(inBetweenTime);
+
+        if (!isShooting)
+        {
+            yield return new WaitForSeconds(lingerTime);
+            crossAnim = DOTween.To(() => value, x => value = x, 0, returnTime);
+        }
     }
 
-    private IEnumerator linger()
+    public void ToggleHitmarker()
+    {
+        DOTween.Kill("Marker");
+        hitMarker.color = hitMarkerStart;
+        StartCoroutine(fadeMarker());
+    }
+
+    private IEnumerator fadeMarker()
     {
         yield return new WaitForSeconds(lingerTime);
-
-        if(!isShooting)
-            crossAnim = DOTween.To(() => value, x => value = x, 0, travelTime);
+        hitAnim = hitMarker.DOFade(0f, markerFadeTime).SetId("Marker");
     }
 }

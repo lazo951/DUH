@@ -16,6 +16,11 @@ public class Manager_Effects : MonoBehaviour
         scriptCrosshair.ToggleShooting();
     }
 
+    public void ShowHitMarker()
+    {
+        scriptCrosshair.ToggleHitmarker();
+    }
+
     public void CameraShake()
     {
         //

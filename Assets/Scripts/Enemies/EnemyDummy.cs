@@ -29,6 +29,7 @@ public class EnemyDummy : Object_Base
         mat.SetColor("_Glow_Color", enemy.glowEffectColor);
         DOVirtual.Float(0, enemy.glowEffectStrength, enemy.glowEffectDuration, val => mat.SetFloat("_Glow_Strength", val)).SetLoops(2, LoopType.Yoyo);
 
+        MainManager.Effects.ShowHitMarker();
         //inst pooled blood at impact point at angle
     }
 
