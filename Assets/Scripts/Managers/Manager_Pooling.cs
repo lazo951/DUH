@@ -62,6 +62,7 @@ public class Manager_Pooling : MonoBehaviour
         decalPool[decalPoolCounter].gameObject.SetActive(true);
         decalPool[decalPoolCounter].position = pos;
         decalPool[decalPoolCounter].rotation = Quaternion.LookRotation(normal);
+        decalPool[decalPoolCounter].GetComponent<Impact>().PlayImpact();
 
         decalPoolCounter++;
         if (decalPoolCounter >= decalPoolSize)

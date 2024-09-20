@@ -27,7 +27,7 @@ public class Gun_Base : MonoBehaviour
 
     private IEnumerator WaitReload()
     {
-        gunAudio.PlayOneShot(gun.soundReload);
+        PlaySoundEffect(gun.soundReload);
 
         isReloading = true;
         yield return new WaitForSeconds(gun.reloadSpeed);
@@ -45,7 +45,12 @@ public class Gun_Base : MonoBehaviour
     public virtual void Shoot(Transform spawnPos)
     {
         if (!bulletInChamber || isReloading)
+        {
+            if (MainManager.Player.ammo[gun] < 1 && !gunAudio.isPlaying)
+                PlaySoundEffect(gun.soundEmpty);
+
             return;
+        }
 
         bulletInChamber = false;
         bulletsInMagazine--;
@@ -54,7 +59,8 @@ public class Gun_Base : MonoBehaviour
         CheckAmmoState();
 
         MainManager.Effects.AnimateCrosshair();
-        gunAudio.PlayOneShot(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
+        gunAudio.Stop();
+        PlaySoundEffect(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
     }
 
     public virtual void CheckProximity(Transform spawnPos)
@@ -90,9 +96,6 @@ public class Gun_Base : MonoBehaviour
         }
         else if (MainManager.Player.ammo[gun] > 0)
         {
-            if (!gunAudio.isPlaying)
-                gunAudio.PlayOneShot(gun.soundEmpty);
-
             Reload();
         }
     }
@@ -103,5 +106,11 @@ public class Gun_Base : MonoBehaviour
             return;
 
         StartCoroutine(WaitReload());
+    }
+
+    public virtual void PlaySoundEffect(AudioClip clip)
+    {
+        gunAudio.pitch = Random.Range(0.97f, 1.03f);
+        gunAudio.PlayOneShot(clip);
     }
 }
