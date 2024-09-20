@@ -10,12 +10,10 @@ public class Controller_Crosshair : MonoBehaviour
     float startUp, startDown, startRight, startLeft;
     float value;
     bool isShooting;
-    Tween crossAnim;
     [SerializeField] int maxTravel;
     [SerializeField] float lingerTime, inBetweenTime, returnTime;
 
     [SerializeField] Image hitMarker;
-    Tween hitAnim;
     Color hitMarkerStart;
     [SerializeField] float markerFadeTime;
 
@@ -48,7 +46,7 @@ public class Controller_Crosshair : MonoBehaviour
         if (!isShooting)
         {
             isShooting = true;
-            crossAnim.Kill();
+            DOTween.Kill("Cross");
             StartCoroutine(lingerReturn());
         }
     }
@@ -62,7 +60,7 @@ public class Controller_Crosshair : MonoBehaviour
         if (!isShooting)
         {
             yield return new WaitForSeconds(lingerTime);
-            crossAnim = DOTween.To(() => value, x => value = x, 0, returnTime);
+            DOTween.To(() => value, x => value = x, 0, returnTime).SetId("Cross");
         }
     }
 
@@ -76,6 +74,6 @@ public class Controller_Crosshair : MonoBehaviour
     private IEnumerator fadeMarker()
     {
         yield return new WaitForSeconds(lingerTime);
-        hitAnim = hitMarker.DOFade(0f, markerFadeTime).SetId("Marker");
+        hitMarker.DOFade(0f, markerFadeTime).SetId("Marker");
     }
 }

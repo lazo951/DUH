@@ -1,7 +1,5 @@
 using UnityEngine;
 
-public enum GunShootype { rigidbody, hitscan}
-
 [CreateAssetMenu(fileName = "GunTemplate", menuName = "Scriptable Objects/GunTemplate")]
 public class GunTemplate : ScriptableObject
 {
@@ -9,7 +7,6 @@ public class GunTemplate : ScriptableObject
     [TextArea(3,5)] public string gunDescription;
 
     [Header("Weapon Stats")]
-    //public GunShootype gunType;
     public float reloadSpeed;
     public float rateOfFire;
     public float recoilStrength;
@@ -31,4 +28,9 @@ public class GunTemplate : ScriptableObject
     public LayerMask proximityCollisionMask;
     public float proximityRadius;
     public float bulletSpawnDistance;
+
+    [Header("Audio")]
+    public AudioClip[] soundShooting;
+    public AudioClip soundReload;
+    public AudioClip soundEmpty;
 }

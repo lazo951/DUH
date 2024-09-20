@@ -5,6 +5,7 @@ using UnityEngine;
 public class Manager_Effects : MonoBehaviour
 {
     [SerializeField] Controller_Crosshair scriptCrosshair;
+    //[SerializeField] AudioSource weaponAudio;
 
     public void SetupValues()
     {

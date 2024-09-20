@@ -11,9 +11,12 @@ public class Gun_Base : MonoBehaviour
     bool bulletInChamber = true;
     bool isReloading;
 
+    AudioSource gunAudio;
+
     private void Start()
     {
         bulletsInMagazine = gun.magazineSize;
+        gunAudio = GetComponent<AudioSource>();
     }
 
     private IEnumerator FireRate()
@@ -24,6 +27,8 @@ public class Gun_Base : MonoBehaviour
 
     private IEnumerator WaitReload()
     {
+        gunAudio.PlayOneShot(gun.soundReload);
+
         isReloading = true;
         yield return new WaitForSeconds(gun.reloadSpeed);
 
@@ -49,6 +54,7 @@ public class Gun_Base : MonoBehaviour
         CheckAmmoState();
 
         MainManager.Effects.AnimateCrosshair();
+        gunAudio.PlayOneShot(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
     }
 
     public virtual void CheckProximity(Transform spawnPos)
@@ -84,6 +90,9 @@ public class Gun_Base : MonoBehaviour
         }
         else if (MainManager.Player.ammo[gun] > 0)
         {
+            if (!gunAudio.isPlaying)
+                gunAudio.PlayOneShot(gun.soundEmpty);
+
             Reload();
         }
     }

@@ -31,3 +31,7 @@ MonoBehaviour:
     m_Bits: 3841
   proximityRadius: 3
   bulletSpawnDistance: 1
+  soundShooting:
+  - {fileID: 8300000, guid: e6b2babb1e4ec91468d311897b2e37cd, type: 3}
+  soundReload: {fileID: 8300000, guid: fc7644d6d65504242b7d3f605695ea62, type: 3}
+  soundEmpty: {fileID: 8300000, guid: 3fd5ea62c0fd8c74b82159fd43830e3a, type: 3}

@@ -11,9 +11,6 @@ public class Controller_Shooting : MonoBehaviour
     [SerializeField] Vector3 activePosition, inactivePosition;
     [SerializeField] float switchSpeed;
 
-    Tween gunUp;
-    Tween gunDown;
-
     private void Update()
     {
         if (Input.GetButton("Fire1"))
@@ -53,8 +50,8 @@ public class Controller_Shooting : MonoBehaviour
         if (num > availableGuns.Count - 1 || currentGun == num)
             return;
 
-        gunUp.Kill();
-        gunDown.Kill();
+        DOTween.Kill("GunUp");
+        DOTween.Kill("GunDown");
 
         activeGun = null;
         previousGun = currentGun;
@@ -65,8 +62,8 @@ public class Controller_Shooting : MonoBehaviour
 
     private void SwitchGunIncrement(int num)
     {
-        gunUp.Kill();
-        gunDown.Kill();
+        DOTween.Kill("GunUp");
+        DOTween.Kill("GunDown");
 
         activeGun = null;
         previousGun = currentGun;
@@ -82,12 +79,12 @@ public class Controller_Shooting : MonoBehaviour
 
     private void PutGunDown()
     {
-        gunDown = availableGuns[previousGun].DOLocalMove(inactivePosition, switchSpeed / 2).OnComplete(DeactivateGun);
+        availableGuns[previousGun].DOLocalMove(inactivePosition, switchSpeed / 2).SetId("GunDown").OnComplete(DeactivateGun);
     }
 
     private void PutGunUp()
     {
-        gunUp = availableGuns[currentGun].DOLocalMove(activePosition, switchSpeed / 2).OnComplete(SetNewGun);
+        availableGuns[currentGun].DOLocalMove(activePosition, switchSpeed / 2).SetId("GunUp").OnComplete(SetNewGun);
     }
 
     private void ActivateGun()

@@ -15,7 +15,7 @@ MonoBehaviour:
   gunName: SMG
   gunDescription: 
   reloadSpeed: 2
-  rateOfFire: 0.05
+  rateOfFire: 0.1
   recoilStrength: 3
   damage: 1
   speed: 60
@@ -31,3 +31,9 @@ MonoBehaviour:
     m_Bits: 3841
   proximityRadius: 3
   bulletSpawnDistance: 1
+  soundShooting:
+  - {fileID: 8300000, guid: 1a2dec2e761f3b84c830b9b72776da87, type: 3}
+  - {fileID: 8300000, guid: 805125f3b1c5f494f90456348b853911, type: 3}
+  - {fileID: 8300000, guid: 1e61642356a51e94c9385bfe11f56730, type: 3}
+  soundReload: {fileID: 8300000, guid: 0f23a591ac24a8845873efcd5aac2cad, type: 3}
+  soundEmpty: {fileID: 8300000, guid: 3fd5ea62c0fd8c74b82159fd43830e3a, type: 3}
