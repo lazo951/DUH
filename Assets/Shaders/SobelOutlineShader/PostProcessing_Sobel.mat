@@ -42,9 +42,9 @@ Material:
     - _ColorThreshold: 0.3
     - _NoiseScale: 500
     - _NoiseStrength: 1.19
-    - _NormalThreshold: 0.3
+    - _NormalThreshold: 1
     - _OVERLAYOUTLINES: 1
-    - _OutlineStrength: 0.604
+    - _OutlineStrength: 0.7
     - _SCRATCHY: 0
     - _ScratchyNoiseScale: 500
     - _ScratchyNoiseStrength: 1

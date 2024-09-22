@@ -16,13 +16,14 @@ MonoBehaviour:
   gunDescription: 
   reloadSpeed: 1
   rateOfFire: 0.5
-  recoilStrength: 3
+  recoilStrength: 2
   damage: 1
   speed: 60
-  size: 0.2
+  size: 0.05
   mass: 1
-  drag: 2
+  drag: 0
   duration: 2
+  forceOverLifetime: {x: 0, y: 9, z: 0}
   magazineSize: 12
   startAmmoInInventory: 24
   maxAmmo: 120

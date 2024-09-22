@@ -18,6 +18,7 @@ public class GunTemplate : ScriptableObject
     public float mass;
     public float drag;
     public float duration;
+    public Vector3 forceOverLifetime;
 
     [Header("Ammo Stats")]
     public int magazineSize;

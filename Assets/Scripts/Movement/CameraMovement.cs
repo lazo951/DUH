@@ -40,6 +40,7 @@ public class CameraMovement : MonoBehaviour
 
         // Get raw mouse input for a cleaner reading on more sensitive mice.
         var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        MainManager.Player.SwayWeapon(mouseDelta);
         // Scale input against the sensitivity setting and multiply that against the smoothing value.
         mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
 
@@ -72,7 +73,7 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    public void AddRecoil(Vector3 recoil, float time)
+    public void AddRecoil(float intensity, float time)
     {
         float recoilElapsed = 0;
         StartCoroutine(recoilIncrease());
@@ -81,7 +82,8 @@ public class CameraMovement : MonoBehaviour
             while (recoilElapsed < time)
             {
                 recoilElapsed += Time.deltaTime;
-                _mouseAbsolute += (Vector2)(recoil * Time.deltaTime / time);
+                //_mouseAbsolute += (Vector2)(recoil * Time.deltaTime / time);
+                _mouseAbsolute += new Vector2(Random.Range(-1f,1f), Random.Range(-1f,1f)) * intensity * Time.deltaTime / time;
                 yield return null;
             }
         }

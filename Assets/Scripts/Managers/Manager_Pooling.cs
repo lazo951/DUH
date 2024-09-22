@@ -4,76 +4,102 @@ using UnityEngine;
 
 public class Manager_Pooling : MonoBehaviour
 {
-    [SerializeField] List<Transform> bulletPool = new List<Transform>();
-
-    [SerializeField] GameObject bulletPrefab;
-    [SerializeField] int bulletPoolSize;
+    [SerializeField] List<Transform> playerBulletPool = new List<Transform>();
+    [SerializeField] GameObject playerBulletPrefab;
+    [SerializeField] int playerBulletPoolSize;
     [SerializeField] Transform bulletParent;
 
-    //public LayerMask playerBulletCollisionMask;
-    //public LayerMask enemyBulletCollisionMask;
+    [SerializeField] List<Transform> enemyBulletPool = new List<Transform>();
+    [SerializeField] GameObject enemyBulletPrefab;
+    [SerializeField] int enemyBulletPoolSize;
 
-    [SerializeField] List<Transform> decalPool = new List<Transform>();
-    [SerializeField] GameObject decalPrefab;
-    [SerializeField] int decalPoolSize;
-    [SerializeField] Transform decalParent;
-    int decalPoolCounter;
+    [SerializeField] List<Transform> impactEffectPool = new List<Transform>();
+    [SerializeField] GameObject impactPrefab;
+    [SerializeField] int impactPoolSize;
+    [SerializeField] Transform impactParent;
+    int impactPoolCounter;
 
     public void SetupValues()
     {
-        for (int i = 0; i < bulletPoolSize; i++)
+        for (int i = 0; i < playerBulletPoolSize; i++)
         {
-            bulletPool.Add(Instantiate(bulletPrefab, bulletParent).transform);
-            bulletPool[i].gameObject.SetActive(false);
+            playerBulletPool.Add(Instantiate(playerBulletPrefab, bulletParent).transform);
+            playerBulletPool[i].gameObject.SetActive(false);
         }
 
-        for(int i  = 0; i < decalPoolSize; i++) 
+        for (int i = 0; i < enemyBulletPoolSize; i++)
         {
-            decalPool.Add(Instantiate(decalPrefab, decalParent).transform);
-            decalPool[i].gameObject.SetActive(false);
+            enemyBulletPool.Add(Instantiate(enemyBulletPrefab, bulletParent).transform);
+            enemyBulletPool[i].gameObject.SetActive(false);
+        }
+
+        for (int i  = 0; i < impactPoolSize; i++) 
+        {
+            impactEffectPool.Add(Instantiate(impactPrefab, impactParent).transform);
+            impactEffectPool[i].gameObject.SetActive(false);
         }
     }
 
-    public Transform TakeBullet()
+    public Transform TakePlayerBullet()
     {
-        if (bulletPool.Count > 0)
+        if (playerBulletPool.Count > 0)
         {
-            Transform bullet = bulletPool[0];
-            bulletPool.RemoveAt(0);
+            Transform bullet = playerBulletPool[0];
+            playerBulletPool.RemoveAt(0);
             return bullet;
         }
 
         return null;
     }
 
-    public void ReturnBullet(Transform bullet)
+    public Transform TakeEnemyBullet()
     {
-        if (!bulletPool.Contains(bullet))
+        if (enemyBulletPool.Count > 0)
         {
-            bulletPool.Add(bullet);
+            Transform bullet = enemyBulletPool[0];
+            enemyBulletPool.RemoveAt(0);
+            return bullet;
+        }
+
+        return null;
+    }
+
+    public void ReturnPlayerBullet(Transform bullet)
+    {
+        if (!playerBulletPool.Contains(bullet))
+        {
+            playerBulletPool.Add(bullet);
         }
     }
 
-    public void PlaceDecal(Vector3 pos, Vector3 normal)
+    public void ReturnEnemyBullet(Transform bullet)
+    {
+        if (!enemyBulletPool.Contains(bullet))
+        {
+            enemyBulletPool.Add(bullet);
+        }
+    }
+
+    public void PlaceImpact(Vector3 pos, Vector3 normal)
     {
         if (normal == Vector3.zero)
             return;
 
-        decalPool[decalPoolCounter].gameObject.SetActive(true);
-        decalPool[decalPoolCounter].position = pos;
-        decalPool[decalPoolCounter].rotation = Quaternion.LookRotation(normal);
-        decalPool[decalPoolCounter].GetComponent<Impact>().PlayImpact();
+        impactEffectPool[impactPoolCounter].gameObject.SetActive(true);
+        impactEffectPool[impactPoolCounter].position = pos;
+        impactEffectPool[impactPoolCounter].rotation = Quaternion.LookRotation(normal);
+        impactEffectPool[impactPoolCounter].GetComponent<Impact>().PlayImpact();
 
-        decalPoolCounter++;
-        if (decalPoolCounter >= decalPoolSize)
-            decalPoolCounter = 0;
+        impactPoolCounter++;
+        if (impactPoolCounter >= impactPoolSize)
+            impactPoolCounter = 0;
     }
 
-    public void ResetDecals()
+    public void ResetImpacts()
     {
-        decalPoolCounter = 0;
+        impactPoolCounter = 0;
 
-        foreach(Transform dec in decalPool)
+        foreach(Transform dec in impactEffectPool)
             dec.gameObject.SetActive(false);
     }
 }

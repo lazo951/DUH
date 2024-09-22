@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EnemyDummy
-  m_Shader: {fileID: -6465566751694194690, guid: ea635bfbae9826143a2da0ce06e55917,
+  m_Shader: {fileID: -6465566751694194690, guid: db0ae0bdbe2490545a0ab64278633f7f,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

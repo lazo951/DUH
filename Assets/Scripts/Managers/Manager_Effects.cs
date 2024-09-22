@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class Manager_Effects : MonoBehaviour
 {
+    [SerializeField] CameraMovement scrCamera;
     [SerializeField] Controller_Crosshair scriptCrosshair;
-    //[SerializeField] AudioSource weaponAudio;
+    [SerializeField] AudioSource hitmarkerAudio;
 
     public void SetupValues()
     {
         //
     }
 
-    public void AnimateCrosshair()
+    public void ShootEffects(float intensity)
     {
-        scriptCrosshair.ToggleShooting();
+        scrCamera.AddRecoil(intensity, 0.5f);
+        scriptCrosshair.ToggleShooting((int)intensity);
     }
 
     public void ShowHitMarker()
     {
         scriptCrosshair.ToggleHitmarker();
+
+        if(!hitmarkerAudio.isPlaying)
+            hitmarkerAudio.Play();
     }
 
     public void CameraShake()

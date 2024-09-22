@@ -6,7 +6,7 @@ public class Pickup_Health : Pickup_Base
 {
     [SerializeField] float healAmount;
 
-    public override void PickedUp(Transform player)
+    public override void PickedUp()
     {
         if (MainManager.Player.health < MainManager.Player.maxHealth)
         {

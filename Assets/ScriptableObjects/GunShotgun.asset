@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff12f7cbc42f620409d9cc8e83ab0607, type: 3}
   m_Name: GunShotgun
   m_EditorClassIdentifier: 
-  gunName: 
+  gunName: Shotgun
   gunDescription: 
   reloadSpeed: 1
   rateOfFire: 1
-  recoilStrength: 3
+  recoilStrength: 10
   damage: 2
   speed: 60
   size: 0.05
   mass: 1
   drag: 0
   duration: 1
+  forceOverLifetime: {x: 0, y: 0, z: 0}
   magazineSize: 5
   startAmmoInInventory: 10
   maxAmmo: 50

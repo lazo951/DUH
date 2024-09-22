@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Pickup_Base : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            PickedUp(collision.gameObject.transform);
-        }
+        if (other.gameObject.CompareTag("Player"))
+            PickedUp();
     }
 
-    public virtual void PickedUp(Transform player)
+    public virtual void PickedUp()
     {
         //
     }

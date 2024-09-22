@@ -7,7 +7,7 @@ public class Gun_Base : MonoBehaviour
 {
     public GunTemplate gun;
 
-    int bulletsInMagazine;
+    public int bulletsInMagazine;
     bool bulletInChamber = true;
     bool isReloading;
 
@@ -54,11 +54,12 @@ public class Gun_Base : MonoBehaviour
 
         bulletInChamber = false;
         bulletsInMagazine--;
+        MainManager.Player.UIAmmo();
 
         CheckProximity(spawnPos);
         CheckAmmoState();
 
-        MainManager.Effects.AnimateCrosshair();
+        MainManager.Effects.ShootEffects(gun.recoilStrength);
         gunAudio.Stop();
         PlaySoundEffect(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
     }
@@ -79,7 +80,7 @@ public class Gun_Base : MonoBehaviour
 
     public virtual void ShootRigidbody(Transform spawnPos)
     {
-        Transform bullet = MainManager.Pooling.TakeBullet();
+        Transform bullet = MainManager.Pooling.TakePlayerBullet();
         bullet?.GetComponent<Bullet>().StartBullet(spawnPos.position + spawnPos.forward * gun.bulletSpawnDistance, spawnPos.rotation, gun);
     }
 

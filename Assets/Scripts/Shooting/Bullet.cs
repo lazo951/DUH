@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] LayerMask predictLayer;
+    [SerializeField] bool isPlayerBullet;
     GunTemplate firedFromGun;
 
     private void OnEnable()
@@ -16,16 +17,13 @@ public class Bullet : MonoBehaviour
 
     private void OnDisable()
     {
-        //rb.velocity = Vector3.zero;
         rb.isKinematic = true;
         StopAllCoroutines();
 
-        MainManager.Pooling.ReturnBullet(transform);
-    }
-
-    private void FixedUpdate()
-    {
-        PredictCollision();
+        if(isPlayerBullet)
+            MainManager.Pooling.ReturnPlayerBullet(transform);
+        else
+            MainManager.Pooling.ReturnEnemyBullet(transform);
     }
 
     public void StartBullet(Vector3 spawnPos, Quaternion spawnRot, GunTemplate gun)
@@ -50,6 +48,17 @@ public class Bullet : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void FixedUpdate()
+    {
+        ApplyForceOverLifetime();
+        PredictCollision();
+    }
+
+    private void ApplyForceOverLifetime()
+    {
+        rb.AddForce(firedFromGun.forceOverLifetime);
+    }
+
     private void PredictCollision()
     {
         Vector3 prediction = transform.position + rb.velocity * Time.fixedDeltaTime;
@@ -71,15 +80,6 @@ public class Bullet : MonoBehaviour
 
     private void RealCollision(GameObject hitObject, Vector3 normal)
     {
-        ////Debugging
-        //Debug.Log("Hit object " + hitObject.name);
-
-        ////Code
-        //if(hitObject.GetComponent<Object_Base>())
-        //    hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal);
-        //else
-        //    MainManager.Pooling.PlaceDecal(transform.position, normal);
-
         hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal);
         gameObject.SetActive(false);
     }

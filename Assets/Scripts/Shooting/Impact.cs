@@ -9,5 +9,6 @@ public class Impact : MonoBehaviour
     public void PlayImpact()
     {
         GetComponent<AudioSource>().PlayOneShot(impactSounds[Random.Range(0, impactSounds.Length)]);
+        //play particle effect
     }
 }

@@ -38,9 +38,9 @@ public class Controller_Crosshair : MonoBehaviour
         left.rectTransform.anchoredPosition = new Vector2(startLeft - value, 0);
     }
 
-    public void ToggleShooting()
+    public void ToggleShooting(int intensity)
     {
-        value += maxTravel/10;
+        value += intensity*2;
         value = Mathf.Clamp(value, 0, maxTravel);
 
         if (!isShooting)

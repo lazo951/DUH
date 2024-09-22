@@ -7,7 +7,7 @@ public class Pickup_Ammo : Pickup_Base
     [SerializeField] GunTemplate ammoForGun;
     [SerializeField] int ammoAmount;
 
-    public override void PickedUp(Transform player)
+    public override void PickedUp()
     {
         if (MainManager.Player.ammo[ammoForGun] < ammoForGun.maxAmmo)
         {
