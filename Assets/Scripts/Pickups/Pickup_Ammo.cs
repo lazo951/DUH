@@ -9,9 +9,9 @@ public class Pickup_Ammo : Pickup_Base
 
     public override void PickedUp()
     {
-        if (MainManager.Player.ammo[ammoForGun] < ammoForGun.maxAmmo)
+        if (MainManager.Shooting.ammo[ammoForGun] < ammoForGun.maxAmmo)
         {
-            MainManager.Player.ChangeAmmo(ammoForGun, ammoAmount);
+            MainManager.Shooting.ChangeAmmo(ammoForGun, ammoAmount);
             Destroy(gameObject);
         }
     }

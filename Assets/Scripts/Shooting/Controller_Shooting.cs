@@ -9,29 +9,29 @@ public class Controller_Shooting : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            MainManager.Player.activeGun?.Shoot(transform);
+            MainManager.Shooting.activeGun?.Shoot(transform);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            MainManager.Player.activeGun?.Reload();
+            MainManager.Shooting.activeGun?.Reload();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            MainManager.Player.SwitchGunDirect(0);
+            MainManager.Shooting.SwitchGunDirect(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            MainManager.Player.SwitchGunDirect(1);
+            MainManager.Shooting.SwitchGunDirect(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            MainManager.Player.SwitchGunDirect(2);
+            MainManager.Shooting.SwitchGunDirect(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            MainManager.Player.SwitchGunDirect(3);
+            MainManager.Shooting.SwitchGunDirect(3);
         }
     }
 }

@@ -27,16 +27,14 @@ public class Gun_Base : MonoBehaviour
 
     private IEnumerator WaitReload()
     {
-        PlaySoundEffect(gun.soundReload);
-
         isReloading = true;
         yield return new WaitForSeconds(gun.reloadSpeed);
 
         int bulletsNeeded = gun.magazineSize - bulletsInMagazine;
-        bulletsNeeded = Mathf.Clamp(bulletsNeeded, 0, MainManager.Player.ammo[gun]);
+        bulletsNeeded = Mathf.Clamp(bulletsNeeded, 0, MainManager.Shooting.ammo[gun]);
 
         bulletsInMagazine += bulletsNeeded;
-        MainManager.Player.ChangeAmmo(gun, -bulletsNeeded);
+        MainManager.Shooting.ChangeAmmo(gun, -bulletsNeeded);
         bulletInChamber = true;
 
         isReloading = false;
@@ -46,7 +44,7 @@ public class Gun_Base : MonoBehaviour
     {
         if (!bulletInChamber || isReloading)
         {
-            if (MainManager.Player.ammo[gun] < 1 && !gunAudio.isPlaying)
+            if (MainManager.Shooting.ammo[gun] < 1 && !gunAudio.isPlaying)
                 PlaySoundEffect(gun.soundEmpty);
 
             return;
@@ -54,14 +52,15 @@ public class Gun_Base : MonoBehaviour
 
         bulletInChamber = false;
         bulletsInMagazine--;
-        MainManager.Player.UIAmmo();
+        MainManager.Shooting.UIAmmo();
 
         CheckProximity(spawnPos);
-        CheckAmmoState();
 
         MainManager.Effects.ShootEffects(gun.recoilStrength);
         gunAudio.Stop();
         PlaySoundEffect(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
+
+        CheckAmmoState();
     }
 
     public virtual void CheckProximity(Transform spawnPos)
@@ -95,7 +94,7 @@ public class Gun_Base : MonoBehaviour
         {
             StartCoroutine(FireRate());
         }
-        else if (MainManager.Player.ammo[gun] > 0)
+        else if (MainManager.Shooting.ammo[gun] > 0)
         {
             Reload();
         }
@@ -103,9 +102,10 @@ public class Gun_Base : MonoBehaviour
 
     public virtual void Reload()
     {
-        if (MainManager.Player.ammo[gun] == 0)
+        if (MainManager.Shooting.ammo[gun] == 0)
             return;
 
+        PlaySoundEffect(gun.soundReload);
         StartCoroutine(WaitReload());
     }
 

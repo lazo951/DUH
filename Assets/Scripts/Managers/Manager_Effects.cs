@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Manager_Effects : MonoBehaviour
 {
-    [SerializeField] CameraMovement scrCamera;
+    [SerializeField] CameraMovement scriptCamera;
     [SerializeField] Controller_Crosshair scriptCrosshair;
     [SerializeField] AudioSource hitmarkerAudio;
 
@@ -15,7 +15,7 @@ public class Manager_Effects : MonoBehaviour
 
     public void ShootEffects(float intensity)
     {
-        scrCamera.AddRecoil(intensity, 0.5f);
+        scriptCamera.AddRecoil(intensity, 0.5f);
         scriptCrosshair.ToggleShooting((int)intensity);
     }
 

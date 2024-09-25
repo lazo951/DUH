@@ -35,4 +35,4 @@ MonoBehaviour:
   soundShooting:
   - {fileID: 8300000, guid: 14a2655678437c745bd5ecca8da41d3e, type: 3}
   soundReload: {fileID: 8300000, guid: e14556e7d26c9164e8ebfb7c161ab903, type: 3}
-  soundEmpty: {fileID: 8300000, guid: 3fd5ea62c0fd8c74b82159fd43830e3a, type: 3}
+  soundEmpty: {fileID: 8300000, guid: 132037694544e9044b90a22c44be3a83, type: 3}

@@ -12,7 +12,6 @@ public class Gun_Shotgun : Gun_Base
         for (int i = 0; i < numberOfPellets; i++)
         {
             Vector3 spreadDirection = spawnPos.forward + spawnPos.up*Random.Range(-spread, spread) + spawnPos.right* Random.Range(-spread, spread);
-            //spreadDirection.Normalize();
             RaycastHit Hit;
 
             if (Physics.Raycast(spawnPos.position, spreadDirection, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))

@@ -44,7 +44,7 @@ Material:
     - _NoiseStrength: 1.19
     - _NormalThreshold: 1
     - _OVERLAYOUTLINES: 1
-    - _OutlineStrength: 0.7
+    - _OutlineStrength: 0.729
     - _SCRATCHY: 0
     - _ScratchyNoiseScale: 500
     - _ScratchyNoiseStrength: 1

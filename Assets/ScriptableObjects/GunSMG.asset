@@ -37,4 +37,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 805125f3b1c5f494f90456348b853911, type: 3}
   - {fileID: 8300000, guid: 1e61642356a51e94c9385bfe11f56730, type: 3}
   soundReload: {fileID: 8300000, guid: 0f23a591ac24a8845873efcd5aac2cad, type: 3}
-  soundEmpty: {fileID: 8300000, guid: 3fd5ea62c0fd8c74b82159fd43830e3a, type: 3}
+  soundEmpty: {fileID: 8300000, guid: 132037694544e9044b90a22c44be3a83, type: 3}
