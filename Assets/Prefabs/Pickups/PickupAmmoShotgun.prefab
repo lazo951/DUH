@@ -146,5 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd7e8629391e7d4881f8553faa6ce3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupName: Ammo for Shotgun
   ammoForGun: {fileID: 11400000, guid: 86c7048267817aa4e83cc24a24fa1220, type: 2}
   ammoAmount: 10

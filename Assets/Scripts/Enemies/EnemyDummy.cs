@@ -7,6 +7,7 @@ public class EnemyDummy : Object_Base
 {
     [SerializeField] EnemyTemplate enemy;
     [SerializeField] float health;
+    [SerializeField] ParticleSystem bloodParticles;
 
     Material mat;
 
@@ -30,7 +31,11 @@ public class EnemyDummy : Object_Base
         DOVirtual.Float(0, enemy.glowEffectStrength, enemy.glowEffectDuration, val => mat.SetFloat("_Glow_Strength", val)).SetLoops(2, LoopType.Yoyo);
 
         MainManager.Effects.ShowHitMarker();
-        //inst pooled blood at impact point at angle
+
+        bloodParticles.transform.position = impactPoint;
+        bloodParticles.transform.rotation = Quaternion.LookRotation(faceNormal);
+        var emitParams = new ParticleSystem.EmitParams();
+        bloodParticles.Emit(emitParams, 10);
     }
 
     private void Die()

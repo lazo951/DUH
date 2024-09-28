@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pickup_Base : MonoBehaviour
 {
+    public string pickupName;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -13,5 +15,10 @@ public class Pickup_Base : MonoBehaviour
     public virtual void PickedUp()
     {
         //
+    }
+
+    public virtual void DisplayPickup()
+    {
+        MainManager.Effects.UIDisplayPickup(pickupName);
     }
 }

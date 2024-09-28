@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964fc2d743a174c4197c2b7ceea30b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupName: SMG
   pickupGun: {fileID: 11400000, guid: cebdbdd08d2a46b4da233d43a3e7a8e4, type: 2}

@@ -56,10 +56,12 @@ public class Gun_Base : MonoBehaviour
 
         CheckProximity(spawnPos);
 
+        //EFFECTS
         MainManager.Effects.ShootEffects(gun.recoilStrength);
-        gunAudio.Stop();
+        MainManager.Effects.CameraShake(gun.recoilStrength, 0.5f);
         PlaySoundEffect(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
 
+        //CHECK AMMO
         CheckAmmoState();
     }
 

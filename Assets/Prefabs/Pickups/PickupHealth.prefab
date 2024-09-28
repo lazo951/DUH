@@ -146,4 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd02f7ed524955141973f61997cdedc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupName: Health
   healAmount: 25

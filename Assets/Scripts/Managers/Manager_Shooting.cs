@@ -21,15 +21,14 @@ public class Manager_Shooting : MonoBehaviour
 
     [Header("UI")]
     public TMP_Text txtAmmo;
-    public GameObject[] txtWeaponSelect;
+    public TMP_Text txtSelectedWeapon;
 
     public void SetupValues()
     {
         for (int i = 0; i < allGuns.Count; i++)
         {
             ammo.Add(allGuns[i], allGuns[i].startAmmoInInventory);
-            guns.Add(allGuns[i], allGunsTransforms[i]);
-            txtWeaponSelect[i].SetActive(false);
+            guns.Add(allGuns[i], allGunsTransforms[i]);;
         }
 
         UIAmmo();
@@ -54,7 +53,6 @@ public class Manager_Shooting : MonoBehaviour
             pickedGuns.Add(guns[gun]);
             SwitchGunDirect(pickedGuns.Count - 1);
 
-            txtWeaponSelect[pickedGuns.Count - 1].SetActive(true);
             UIAmmo();
         }
     }
@@ -71,9 +69,6 @@ public class Manager_Shooting : MonoBehaviour
     #region GunSwitch
     public void SwitchGunDirect(int num)
     {
-        //if (num > pickedGuns.Count - 1 || currentGun == num)
-        //    return;
-
         if (num > pickedGuns.Count - 1)
             return;
 
@@ -130,6 +125,7 @@ public class Manager_Shooting : MonoBehaviour
             return;
 
         txtAmmo.text = activeGun.bulletsInMagazine.ToString() + "/" + ammo[activeGun.gun].ToString();
+        txtSelectedWeapon.text = activeGun.gun.gunName;
     }
 
     #endregion
