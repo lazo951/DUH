@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class Manager_Pooling : MonoBehaviour
 {
+    //Player bullets
     [SerializeField] List<Transform> playerBulletPool = new List<Transform>();
     [SerializeField] GameObject playerBulletPrefab;
     [SerializeField] int playerBulletPoolSize;
     [SerializeField] Transform bulletParent;
 
+    //Enemy bullets
     [SerializeField] List<Transform> enemyBulletPool = new List<Transform>();
     [SerializeField] GameObject enemyBulletPrefab;
     [SerializeField] int enemyBulletPoolSize;
 
+    //Impact effects
     [SerializeField] List<Transform> impactEffectPool = new List<Transform>();
     [SerializeField] GameObject impactPrefab;
     [SerializeField] int impactPoolSize;
     [SerializeField] Transform impactParent;
     int impactPoolCounter;
+
+    //Explosion effects
+    [SerializeField] List<Transform> explosionPool = new List<Transform>();
+    [SerializeField] GameObject explosionPrefab;
+    [SerializeField] int explosionPoolSize;
+    int explosionPoolCounter;
 
     public void SetupValues()
     {
@@ -37,6 +46,12 @@ public class Manager_Pooling : MonoBehaviour
         {
             impactEffectPool.Add(Instantiate(impactPrefab, impactParent).transform);
             impactEffectPool[i].gameObject.SetActive(false);
+        }
+
+        for(int i = 0; i < explosionPoolSize; i++)
+        {
+            explosionPool.Add(Instantiate(explosionPrefab, impactParent).transform);
+            explosionPool[i].gameObject.SetActive(false);
         }
     }
 
@@ -101,5 +116,16 @@ public class Manager_Pooling : MonoBehaviour
 
         foreach(Transform dec in impactEffectPool)
             dec.gameObject.SetActive(false);
+    }
+
+    public void PlaceExplosion(Vector3 pos)
+    {
+        explosionPool[explosionPoolCounter].gameObject.SetActive(true);
+        explosionPool[explosionPoolCounter].position = pos;
+        explosionPool[explosionPoolCounter].GetComponent<Impact>().PlayImpact();
+
+        explosionPoolCounter++;
+        if(explosionPoolCounter >= explosionPoolSize)
+            explosionPoolCounter = 0;
     }
 }

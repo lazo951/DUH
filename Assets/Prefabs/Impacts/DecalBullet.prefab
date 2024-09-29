@@ -168,10 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5080415cb657c444e912dd682cc242e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactSounds:
+  effectSounds:
   - {fileID: 8300000, guid: 9c2afbb4868a74d4bad00a1b68f741a2, type: 3}
   - {fileID: 8300000, guid: 8f59375a6e104534c85ebde56dc31536, type: 3}
-  impactParticles: {fileID: 911812816183433555}
+  effectParticles: {fileID: 911812816183433555}
+  emitNumber: 15
 --- !u!1001 &959565876177930255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +181,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 958004907921041733}
     m_Modifications:
+    - target: {fileID: 141433446842962268, guid: 9fe8f8b3288e45a44af36ff8aa04486e,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 141433446842962268, guid: 9fe8f8b3288e45a44af36ff8aa04486e,
         type: 3}
       propertyPath: ShapeModule.type

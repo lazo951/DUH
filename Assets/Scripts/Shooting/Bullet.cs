@@ -50,6 +50,11 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
+        foreach (Mod_Base mod in firedFromGun.ModifiersDuring)
+        {
+            mod.ModifyWeaponDuring(transform);
+        }
+
         ApplyForceOverLifetime();
         PredictCollision();
     }
@@ -80,6 +85,11 @@ public class Bullet : MonoBehaviour
 
     private void RealCollision(GameObject hitObject, Vector3 normal)
     {
+        foreach(Mod_Base mod in firedFromGun.ModifiersColission)
+        {
+            mod.ModifyWeaponColission(transform.position);
+        }
+
         hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal);
         gameObject.SetActive(false);
     }

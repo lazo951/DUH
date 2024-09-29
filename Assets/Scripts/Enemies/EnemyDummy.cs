@@ -32,8 +32,10 @@ public class EnemyDummy : Object_Base
 
         MainManager.Effects.ShowHitMarker();
 
+        if (faceNormal != Vector3.zero)
+            bloodParticles.transform.rotation = Quaternion.LookRotation(faceNormal);
+
         bloodParticles.transform.position = impactPoint;
-        bloodParticles.transform.rotation = Quaternion.LookRotation(faceNormal);
         var emitParams = new ParticleSystem.EmitParams();
         bloodParticles.Emit(emitParams, 10);
     }

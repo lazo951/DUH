@@ -17,7 +17,7 @@ MonoBehaviour:
   reloadSpeed: 2
   rateOfFire: 1
   recoilStrength: 10
-  damage: 20
+  damage: 26
   speed: 30
   size: 0.3
   mass: 1
@@ -36,3 +36,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e7e9041de6285204b95332269af5804c, type: 3}
   soundReload: {fileID: 8300000, guid: 0f23a591ac24a8845873efcd5aac2cad, type: 3}
   soundEmpty: {fileID: 8300000, guid: 132037694544e9044b90a22c44be3a83, type: 3}
+  ModifiersStart: []
+  ModifiersDuring: []
+  ModifiersColission:
+  - {fileID: 11400000, guid: 8219c58c87463cc43a36d7fdd2989566, type: 2}

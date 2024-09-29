@@ -22,3 +22,24 @@ public class MainManager : MonoBehaviour
         Shooting.SetupValues();
     }
 }
+
+public enum ModType
+{
+    weapon,
+    player,
+    both
+}
+
+public enum ModWeaponType
+{
+    start,
+    during,
+    colission
+}
+
+public enum ModPlayerType
+{
+    health,
+    speed,
+    jump
+}

@@ -10,5 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9272854944e98e44a96bd1d68991c7bc, type: 3}
-  m_Name: BulletExplosive
+  m_Name: BulletExplosiveGL
   m_EditorClassIdentifier: 
+  modType: 0
+  weaponStage: 2
+  playerType: 0
+  modForGun: {fileID: 11400000, guid: 6a332e1a7defb18409eb6ff394bfa494, type: 2}
+  damageIncrease: 1
+  explosiveRadius: 2

@@ -88,6 +88,11 @@ public class Gun_Base : MonoBehaviour
     public virtual void ShootHitPoint(RaycastHit Hit)
     {
         Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal);
+
+        foreach (Mod_Base mod in gun.ModifiersColission)
+        {
+            mod.ModifyWeaponColission(Hit.point);
+        }
     }
 
     public void CheckAmmoState()

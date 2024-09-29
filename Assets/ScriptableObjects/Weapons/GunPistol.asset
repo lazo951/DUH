@@ -22,7 +22,7 @@ MonoBehaviour:
   size: 0.05
   mass: 1
   drag: 0
-  duration: 2
+  duration: 10
   forceOverLifetime: {x: 0, y: 9, z: 0}
   magazineSize: 12
   startAmmoInInventory: 24
@@ -36,3 +36,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91179f51a2e9c4c4c85b7b18b26d615e, type: 3}
   soundReload: {fileID: 8300000, guid: fc7644d6d65504242b7d3f605695ea62, type: 3}
   soundEmpty: {fileID: 8300000, guid: 132037694544e9044b90a22c44be3a83, type: 3}
+  ModifiersStart: []
+  ModifiersDuring:
+  - {fileID: 11400000, guid: 5b08447c26b44e84c864cab256164e2c, type: 2}
+  ModifiersColission: []

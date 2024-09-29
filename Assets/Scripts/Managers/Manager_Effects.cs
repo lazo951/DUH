@@ -50,8 +50,14 @@ public class Manager_Effects : MonoBehaviour
         pickupText.text = "Picked up " + pickupName;
         pickupGroup.GetComponent<RectTransform>().localRotation = pickpGroupRotation;
         pickupGroup.alpha = 1;
-
-        pickupGroup.DOFade(0, pickupFadeTime).SetId("Fade");
         pickupGroup.GetComponent<RectTransform>().DOShakeRotation(0.5f, 30f).SetId("Fade");
+
+        StartCoroutine(waitFade());
+
+        IEnumerator waitFade()
+        {
+            yield return new WaitForSeconds(1);
+            pickupGroup.DOFade(0, pickupFadeTime).SetId("Fade");
+        }
     }
 }
