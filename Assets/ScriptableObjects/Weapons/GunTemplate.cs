@@ -16,8 +16,6 @@ public class GunTemplate : ScriptableObject
     public float damage;
     public float speed;
     public float size;
-    public float mass;
-    public float drag;
     public float duration;
     public Vector3 forceOverLifetime;
 
@@ -37,35 +35,35 @@ public class GunTemplate : ScriptableObject
     public AudioClip soundEmpty;
 
     [Header("Modifiers")]
-    public List<Mod_Base> ModifiersStart = new List<Mod_Base>();
-    public List<Mod_Base> ModifiersDuring = new List<Mod_Base>();
+    public List<Mod_Base> ModifiersShoot = new List<Mod_Base>();
+    public List<Mod_Base> ModifiersFixedUpdate = new List<Mod_Base>();
     public List<Mod_Base> ModifiersColission = new List<Mod_Base>();
 
     public void AttachModifier(Mod_Base mod, ModWeaponType stage)
     {
-        if (ModifiersStart.Contains(mod) || ModifiersDuring.Contains(mod) || ModifiersColission.Contains(mod))
+        if (ModifiersShoot.Contains(mod) || ModifiersFixedUpdate.Contains(mod) || ModifiersColission.Contains(mod))
             return;
 
         if (stage == ModWeaponType.start)
         {
-            ModifiersStart.Add(mod);
+            ModifiersShoot.Add(mod);
         }
         else if(stage == ModWeaponType.during)
         {
-            ModifiersDuring.Add(mod);
+            ModifiersFixedUpdate.Add(mod);
         }
         else if(stage == ModWeaponType.colission)
         {
             ModifiersColission.Add(mod);
         }
 
-        mod.InitialModifyWeapon();
+        mod.PermanentModifyWeapon();
     }
 
     public void RemoveAllModifiers()
     {
-        ModifiersStart.Clear();
-        ModifiersDuring.Clear();
+        ModifiersShoot.Clear();
+        ModifiersFixedUpdate.Clear();
         ModifiersColission.Clear();
     }
 }

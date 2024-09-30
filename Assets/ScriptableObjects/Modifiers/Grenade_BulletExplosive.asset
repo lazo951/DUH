@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102e5d647be35924e8ae320590ffb0d9, type: 3}
-  m_Name: BulletZigzagP
+  m_Script: {fileID: 11500000, guid: 9272854944e98e44a96bd1d68991c7bc, type: 3}
+  m_Name: Grenade_BulletExplosive
   m_EditorClassIdentifier: 
+  modDescription: 
   modType: 0
-  weaponStage: 1
   playerType: 0
-  modForGun: {fileID: 11400000, guid: 6d840d275446e454ab614e2d22150c8c, type: 2}
-  zigzagInterval: 0.1
-  xForce: -4
-  fwdForce: 10
+  weaponStage: 2
+  modForGun: {fileID: 11400000, guid: 6a332e1a7defb18409eb6ff394bfa494, type: 2}
+  damageIncrease: 5
+  explosiveRadius: 2

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Object_Base : MonoBehaviour
 {
-    public virtual void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal)
+    public virtual void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal, float projectileScale)
     {
         //
     }

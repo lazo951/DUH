@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Rigidbody rb;
-
     [SerializeField] LayerMask predictLayer;
     [SerializeField] bool isPlayerBullet;
+
+    Rigidbody rb;
     GunTemplate firedFromGun;
 
     private void OnEnable()
@@ -34,8 +34,6 @@ public class Bullet : MonoBehaviour
         transform.localScale = new Vector3(gun.size, gun.size, gun.size);
 
         gameObject.SetActive(true);
-        rb.mass = gun.mass;
-        rb.drag = gun.drag;
         rb.isKinematic = false;
         rb.AddForce(transform.forward * gun.speed, ForceMode.Impulse);
 
@@ -50,9 +48,9 @@ public class Bullet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        foreach (Mod_Base mod in firedFromGun.ModifiersDuring)
+        foreach (Mod_Base mod in firedFromGun.ModifiersFixedUpdate)
         {
-            mod.ModifyWeaponDuring(transform);
+            mod.ModifyWeaponFixedUpdate(transform);
         }
 
         ApplyForceOverLifetime();
@@ -80,17 +78,17 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        RealCollision(collision.gameObject, Vector3.zero);
+        RealCollision(collision.gameObject, collision.GetContact(0).normal);
     }
 
     private void RealCollision(GameObject hitObject, Vector3 normal)
     {
         foreach(Mod_Base mod in firedFromGun.ModifiersColission)
         {
-            mod.ModifyWeaponColission(transform.position);
+            mod.ModifyWeaponColission(hitObject, normal, transform.position);
         }
 
-        hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal);
+        hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal, firedFromGun.size);
         gameObject.SetActive(false);
     }
 }

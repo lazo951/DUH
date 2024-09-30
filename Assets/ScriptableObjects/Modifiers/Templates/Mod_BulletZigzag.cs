@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
 [CreateAssetMenu(fileName = "BulletZigzag", menuName = "Scriptable Objects/Modifiers/BulletZigzag")]
 public class Mod_BulletZigzag : Mod_Base
@@ -11,7 +8,7 @@ public class Mod_BulletZigzag : Mod_Base
     public float xForce;
     public float fwdForce;
 
-    public override void ModifyWeaponDuring(Transform callObject)
+    public override void ModifyWeaponFixedUpdate(Transform callObject)
     {
         timer += Time.fixedDeltaTime;
 

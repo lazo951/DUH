@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Gun_Base : MonoBehaviour
@@ -54,7 +53,12 @@ public class Gun_Base : MonoBehaviour
         bulletsInMagazine--;
         MainManager.Shooting.UIAmmo();
 
-        CheckProximity(spawnPos);
+        foreach (Mod_Base mod in gun.ModifiersShoot)
+        {
+            mod.ModifyWeaponShoot(spawnPos);
+        }
+
+        CheckProximity(spawnPos.position, spawnPos);
 
         //EFFECTS
         MainManager.Effects.ShootEffects(gun.recoilStrength);
@@ -65,33 +69,33 @@ public class Gun_Base : MonoBehaviour
         CheckAmmoState();
     }
 
-    public virtual void CheckProximity(Transform spawnPos)
+    public virtual void CheckProximity(Vector3 spawnPos, Transform spawnSource)
     {
         RaycastHit Hit;
 
-        if (Physics.Raycast(spawnPos.position, spawnPos.forward, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(spawnPos, spawnSource.forward, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
         {
             ShootHitPoint(Hit);
         }
         else
         {
-            ShootRigidbody(spawnPos);
+            ShootRigidbody(spawnPos, spawnSource);
         }
     }
 
-    public virtual void ShootRigidbody(Transform spawnPos)
+    public virtual void ShootRigidbody(Vector3 spawnPos, Transform spawnSource)
     {
         Transform bullet = MainManager.Pooling.TakePlayerBullet();
-        bullet?.GetComponent<Bullet>().StartBullet(spawnPos.position + spawnPos.forward * gun.bulletSpawnDistance, spawnPos.rotation, gun);
+        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, spawnSource.rotation, gun);
     }
 
     public virtual void ShootHitPoint(RaycastHit Hit)
     {
-        Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal);
+        Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal, gun.size);
 
         foreach (Mod_Base mod in gun.ModifiersColission)
         {
-            mod.ModifyWeaponColission(Hit.point);
+            mod.ModifyWeaponColission(Hit.collider.gameObject, Hit.normal, Hit.point);
         }
     }
 

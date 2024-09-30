@@ -2,27 +2,34 @@ using UnityEngine;
 
 public abstract class Mod_Base : ScriptableObject
 {
+    [TextArea(3, 5)] public string modDescription;
+
     public ModType modType;
-    public ModWeaponType weaponStage;
     public ModPlayerType playerType;
+    public ModWeaponType weaponStage;
     public GunTemplate modForGun;
 
-    public virtual void InitialModifyWeapon()
+    public virtual void PermanentModifyWeapon()
     {
         //
     }
 
-    public virtual void ModifyWeaponColission(Vector3 point)
+    public virtual void ModifyWeaponShoot(Transform spawnPos)
     {
         //
     }
 
-    public virtual void ModifyWeaponDuring(Transform callObject)
+    public virtual void ModifyWeaponColission(GameObject hitObject, Vector3 normal, Vector3 impactPoint)
     {
         //
     }
 
-    public virtual void InitialModifyPlayer()
+    public virtual void ModifyWeaponFixedUpdate(Transform callObject)
+    {
+        //
+    }
+
+    public virtual void PermanentModifyPlayer()
     {
         //
     }

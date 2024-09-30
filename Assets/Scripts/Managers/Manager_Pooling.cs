@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Manager_Pooling : MonoBehaviour
 {
@@ -95,13 +96,15 @@ public class Manager_Pooling : MonoBehaviour
         }
     }
 
-    public void PlaceImpact(Vector3 pos, Vector3 normal)
+    public void PlaceImpact(Vector3 pos, Vector3 normal, Vector3 scale)
     {
         if (normal == Vector3.zero)
             return;
 
         impactEffectPool[impactPoolCounter].gameObject.SetActive(true);
         impactEffectPool[impactPoolCounter].position = pos;
+        //impactEffectPool[impactPoolCounter].localScale = scale;
+        impactEffectPool[impactPoolCounter].GetComponent<DecalProjector>().size = scale;
         impactEffectPool[impactPoolCounter].rotation = Quaternion.LookRotation(normal);
         impactEffectPool[impactPoolCounter].GetComponent<Impact>().PlayImpact();
 
@@ -118,10 +121,11 @@ public class Manager_Pooling : MonoBehaviour
             dec.gameObject.SetActive(false);
     }
 
-    public void PlaceExplosion(Vector3 pos)
+    public void PlaceExplosion(Vector3 pos, Vector3 scale)
     {
         explosionPool[explosionPoolCounter].gameObject.SetActive(true);
         explosionPool[explosionPoolCounter].position = pos;
+        explosionPool[explosionPoolCounter].localScale = scale * 4;
         explosionPool[explosionPoolCounter].GetComponent<Impact>().PlayImpact();
 
         explosionPoolCounter++;

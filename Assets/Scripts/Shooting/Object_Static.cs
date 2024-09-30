@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Object_Static : Object_Base
 {
-    public override void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal)
+    public override void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal, float projectileScale)
     {
-        MainManager.Pooling.PlaceImpact(impactPoint, faceNormal);
+        MainManager.Pooling.PlaceImpact(impactPoint, faceNormal, new Vector3(projectileScale, projectileScale, projectileScale));
     }
 }

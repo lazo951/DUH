@@ -7,31 +7,31 @@ public class Gun_Shotgun : Gun_Base
     public int numberOfPellets;
     public float spread;
 
-    public override void CheckProximity(Transform spawnPos)
+    public override void CheckProximity(Vector3 spawnPos, Transform spawnSource)
     {
         for (int i = 0; i < numberOfPellets; i++)
         {
-            Vector3 spreadDirection = spawnPos.forward + spawnPos.up*Random.Range(-spread, spread) + spawnPos.right* Random.Range(-spread, spread);
+            Vector3 spreadDirection = spawnSource.forward + spawnSource.up*Random.Range(-spread, spread) + spawnSource.right* Random.Range(-spread, spread);
             RaycastHit Hit;
 
-            if (Physics.Raycast(spawnPos.position, spreadDirection, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(spawnPos, spreadDirection, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
             {
                 ShootHitPoint(Hit);
-                Debug.DrawRay(spawnPos.position, spreadDirection, Color.red, 10f);
+                //Debug.DrawRay(spawnPos, spreadDirection, Color.red, 10f);
             }
             else
             {
-                ShootRigidbody(spawnPos, spreadDirection);
-                Debug.DrawRay(spawnPos.position, spreadDirection, Color.green, 10f);
+                ShootRigidbody(spawnPos, spawnSource, spreadDirection);
+                //Debug.DrawRay(spawnPos, spreadDirection, Color.green, 10f);
             }
         }
     }
 
-    public void ShootRigidbody(Transform spawnPos, Vector3 spawnDirection)
+    public void ShootRigidbody(Vector3 spawnPos, Transform spawnSource, Vector3 spawnDirection)
     {
         Quaternion rot = Quaternion.LookRotation(spawnDirection);
 
         Transform bullet = MainManager.Pooling.TakePlayerBullet();
-        bullet?.GetComponent<Bullet>().StartBullet(spawnPos.position + spawnPos.forward * gun.bulletSpawnDistance, rot, gun);
+        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, rot, gun);
     }
 }

@@ -16,7 +16,7 @@ public class EnemyDummy : Object_Base
         mat = GetComponent<MeshRenderer>().material;
     }
 
-    public override void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal)
+    public override void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal, float projectileScale)
     {
         health -= dmg;
         if (health <= 0)

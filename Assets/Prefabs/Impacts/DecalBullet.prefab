@@ -57,7 +57,7 @@ MonoBehaviour:
   m_DecalLayerMask: 1
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0.1, y: 0.1, z: 0.05}
+  m_Size: {x: 1, y: 1, z: 0.05}
   m_FadeFactor: 1
 --- !u!82 &739775061059105077
 AudioSource:
@@ -172,7 +172,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9c2afbb4868a74d4bad00a1b68f741a2, type: 3}
   - {fileID: 8300000, guid: 8f59375a6e104534c85ebde56dc31536, type: 3}
   effectParticles: {fileID: 911812816183433555}
-  emitNumber: 15
 --- !u!1001 &959565876177930255
 PrefabInstance:
   m_ObjectHideFlags: 0
