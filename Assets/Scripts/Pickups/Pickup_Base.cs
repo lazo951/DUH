@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Pickup_Base : MonoBehaviour
 {
-    public string pickupName;
+    private void Update()
+    {
+        transform.Rotate(0, 60 * Time.deltaTime, 0);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,7 +20,7 @@ public class Pickup_Base : MonoBehaviour
         //
     }
 
-    public virtual void DisplayPickup()
+    public virtual void DisplayPickup(string pickupName)
     {
         MainManager.Effects.UIDisplayPickup(pickupName);
     }

@@ -9,7 +9,7 @@ public class Pickup_Weapon : Pickup_Base
     public override void PickedUp()
     {
         MainManager.Shooting.PickupWeapon(pickupGun);
-        DisplayPickup();
+        DisplayPickup(pickupGun.gunName);
         Destroy(gameObject);
     }
 }

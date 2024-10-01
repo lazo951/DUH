@@ -6,7 +6,7 @@ public class Gun_Base : MonoBehaviour
 {
     public GunTemplate gun;
 
-    public int bulletsInMagazine;
+    [HideInInspector]public int bulletsInMagazine;
     bool bulletInChamber = true;
     bool isReloading;
 
@@ -55,7 +55,7 @@ public class Gun_Base : MonoBehaviour
 
         foreach (Mod_Base mod in gun.ModifiersShoot)
         {
-            mod.ModifyWeaponShoot(spawnPos);
+            mod.ModifyWeaponShoot(spawnPos, transform.gameObject);
         }
 
         CheckProximity(spawnPos.position, spawnPos);

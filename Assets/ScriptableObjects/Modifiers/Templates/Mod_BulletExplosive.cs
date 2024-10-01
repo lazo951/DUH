@@ -17,7 +17,7 @@ public class Mod_BulletExplosive : Mod_Base
         foreach (Collider hit in colliders)
         {
             hit.GetComponent<Object_Base>()?.Damage(modForGun.damage, impactPoint, Vector3.zero, modForGun.size);
-            MainManager.Pooling.PlaceExplosion(impactPoint, new Vector3(modForGun.size, modForGun.size, modForGun.size));
+            MainManager.Pooling.PlaceExplosion(impactPoint, new Vector3(explosiveRadius, explosiveRadius, explosiveRadius));
 
             //Rigidbody rb = hit.GetComponent<Rigidbody>();
 

@@ -12,7 +12,7 @@ public class Pickup_Ammo : Pickup_Base
         if (MainManager.Shooting.ammo[ammoForGun] < ammoForGun.maxAmmo)
         {
             MainManager.Shooting.ChangeAmmo(ammoForGun, ammoAmount);
-            DisplayPickup();
+            DisplayPickup(ammoForGun.gunName + " ammo +" + ammoAmount.ToString());
             Destroy(gameObject);
         }
     }

@@ -11,7 +11,7 @@ public class Pickup_Health : Pickup_Base
         if (MainManager.Player.health < MainManager.Player.maxHealth)
         {
             MainManager.Player.ChangeHealth(healAmount);
-            DisplayPickup();
+            DisplayPickup("Health +" + healAmount.ToString("F0"));
             Destroy(gameObject);
         }
     }

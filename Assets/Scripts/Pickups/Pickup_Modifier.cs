@@ -11,7 +11,7 @@ public class Pickup_Modifier : Pickup_Base
     {
         modifier.AttachModifier();
 
-        DisplayPickup();
+        DisplayPickup(modifier.modName + " for " + modifier.modForGun.gunName + " modifier");
         Destroy(gameObject);
     }
 }

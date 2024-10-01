@@ -32,9 +32,10 @@ public enum ModType
 
 public enum ModWeaponType
 {
-    start,
-    during,
-    colission
+    onPickup,
+    onShoot,
+    onUpdate,
+    onColission
 }
 
 public enum ModPlayerType

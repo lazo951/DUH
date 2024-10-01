@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Mod_Base : ScriptableObject
 {
+    public string modName;
     [TextArea(3, 5)] public string modDescription;
 
     public ModType modType;
@@ -14,7 +15,7 @@ public abstract class Mod_Base : ScriptableObject
         //
     }
 
-    public virtual void ModifyWeaponShoot(Transform spawnPos)
+    public virtual void ModifyWeaponShoot(Transform spawnPos, GameObject gunShooting)
     {
         //
     }

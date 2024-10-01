@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af7a034c8bf0eb4da43ff76726c310a, type: 3}
   m_Name: Grenade_Tripleshot
   m_EditorClassIdentifier: 
+  modName: tripleshot
   modDescription: 
   modType: 0
   playerType: 0
-  weaponStage: 0
+  weaponStage: 1
   modForGun: {fileID: 11400000, guid: 6a332e1a7defb18409eb6ff394bfa494, type: 2}
   spacingX: 0.4
   spacingY: 0.4

@@ -103,7 +103,6 @@ public class Manager_Pooling : MonoBehaviour
 
         impactEffectPool[impactPoolCounter].gameObject.SetActive(true);
         impactEffectPool[impactPoolCounter].position = pos;
-        //impactEffectPool[impactPoolCounter].localScale = scale;
         impactEffectPool[impactPoolCounter].GetComponent<DecalProjector>().size = scale;
         impactEffectPool[impactPoolCounter].rotation = Quaternion.LookRotation(normal);
         impactEffectPool[impactPoolCounter].GetComponent<Impact>().PlayImpact();
@@ -125,7 +124,7 @@ public class Manager_Pooling : MonoBehaviour
     {
         explosionPool[explosionPoolCounter].gameObject.SetActive(true);
         explosionPool[explosionPoolCounter].position = pos;
-        explosionPool[explosionPoolCounter].localScale = scale * 4;
+        explosionPool[explosionPoolCounter].localScale = scale/2;
         explosionPool[explosionPoolCounter].GetComponent<Impact>().PlayImpact();
 
         explosionPoolCounter++;

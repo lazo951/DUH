@@ -35,24 +35,29 @@ public class GunTemplate : ScriptableObject
     public AudioClip soundEmpty;
 
     [Header("Modifiers")]
+    public List<Mod_Base> ModifiersPickup = new List<Mod_Base>();
     public List<Mod_Base> ModifiersShoot = new List<Mod_Base>();
     public List<Mod_Base> ModifiersFixedUpdate = new List<Mod_Base>();
     public List<Mod_Base> ModifiersColission = new List<Mod_Base>();
 
     public void AttachModifier(Mod_Base mod, ModWeaponType stage)
     {
-        if (ModifiersShoot.Contains(mod) || ModifiersFixedUpdate.Contains(mod) || ModifiersColission.Contains(mod))
+        if (ModifiersShoot.Contains(mod) || ModifiersFixedUpdate.Contains(mod) || ModifiersColission.Contains(mod) )
             return;
 
-        if (stage == ModWeaponType.start)
+        if (stage == ModWeaponType.onPickup)
+        {
+            ModifiersPickup.Add(mod);
+        }
+        else if (stage == ModWeaponType.onShoot)
         {
             ModifiersShoot.Add(mod);
         }
-        else if(stage == ModWeaponType.during)
+        else if(stage == ModWeaponType.onUpdate)
         {
             ModifiersFixedUpdate.Add(mod);
         }
-        else if(stage == ModWeaponType.colission)
+        else if(stage == ModWeaponType.onColission)
         {
             ModifiersColission.Add(mod);
         }
@@ -62,6 +67,7 @@ public class GunTemplate : ScriptableObject
 
     public void RemoveAllModifiers()
     {
+        ModifiersPickup.Clear();
         ModifiersShoot.Clear();
         ModifiersFixedUpdate.Clear();
         ModifiersColission.Clear();

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9272854944e98e44a96bd1d68991c7bc, type: 3}
   m_Name: Pistol_BulletExplosive
   m_EditorClassIdentifier: 
+  modName: explosive bullets
   modDescription: 
   modType: 0
   playerType: 0
-  weaponStage: 2
+  weaponStage: 3
   modForGun: {fileID: 11400000, guid: 6d840d275446e454ab614e2d22150c8c, type: 2}
   damageIncrease: 5
   explosiveRadius: 1
