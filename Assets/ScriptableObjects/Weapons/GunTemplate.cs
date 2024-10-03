@@ -4,12 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GunTemplate", menuName = "Scriptable Objects/GunTemplate")]
 public class GunTemplate : ScriptableObject
 {
+    public GunTemplate baseGunValues;
     public string gunName;
     [TextArea(3,5)] public string gunDescription;
 
     [Header("Weapon Stats")]
     public float reloadSpeed;
-    public float rateOfFire;
+    public int rateOfFireRPM;
     public float recoilStrength;
 
     [Header("Bullet Stats")]
@@ -18,6 +19,10 @@ public class GunTemplate : ScriptableObject
     public float size;
     public float duration;
     public Vector3 forceOverLifetime;
+
+    [Header("Effects")]
+    public Gradient bulletTrailColor;
+    public float bulletTrailDuration;
 
     [Header("Ammo Stats")]
     public int magazineSize;
@@ -65,11 +70,53 @@ public class GunTemplate : ScriptableObject
         mod.PermanentModifyWeapon();
     }
 
-    public void RemoveAllModifiers()
+    public void ResetValues()
     {
+        gunName = baseGunValues.gunName;
+        gunDescription = baseGunValues.gunDescription;
+        reloadSpeed = baseGunValues.reloadSpeed;
+        rateOfFireRPM = baseGunValues.rateOfFireRPM;
+        recoilStrength = baseGunValues.recoilStrength;
+        damage = baseGunValues.damage;
+        speed = baseGunValues.speed;
+        size = baseGunValues.size;
+        duration = baseGunValues.duration;
+        forceOverLifetime = baseGunValues.forceOverLifetime;
+        bulletTrailColor = baseGunValues.bulletTrailColor;
+        bulletTrailDuration = baseGunValues.bulletTrailDuration;
+        magazineSize = baseGunValues.magazineSize;
+        startAmmoInInventory = baseGunValues.startAmmoInInventory;
+        maxAmmo = baseGunValues.maxAmmo;
+        proximityCollisionMask = baseGunValues.proximityCollisionMask;
+        proximityRadius = baseGunValues.proximityRadius;
+        bulletSpawnDistance = baseGunValues.bulletSpawnDistance;
+        soundShooting = baseGunValues.soundShooting;
+        soundReload = baseGunValues.soundReload;
+        soundEmpty = baseGunValues.soundEmpty;
+
         ModifiersPickup.Clear();
         ModifiersShoot.Clear();
         ModifiersFixedUpdate.Clear();
         ModifiersColission.Clear();
+
+        foreach(Mod_Base md in baseGunValues.ModifiersPickup)
+        {
+            ModifiersPickup.Add(md);
+        }
+
+        foreach (Mod_Base md in baseGunValues.ModifiersShoot)
+        {
+            ModifiersShoot.Add(md);
+        }
+
+        foreach (Mod_Base md in baseGunValues.ModifiersFixedUpdate)
+        {
+            ModifiersFixedUpdate.Add(md);
+        }
+
+        foreach (Mod_Base md in baseGunValues.ModifiersColission)
+        {
+            ModifiersColission.Add(md);
+        }
     }
 }

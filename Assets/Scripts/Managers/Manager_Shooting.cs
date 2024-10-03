@@ -29,7 +29,7 @@ public class Manager_Shooting : MonoBehaviour
         {
             ammo.Add(allGuns[i], allGuns[i].startAmmoInInventory);
             guns.Add(allGuns[i], allGunsTransforms[i]);
-            allGuns[i].RemoveAllModifiers();
+            allGuns[i].ResetValues();
         }
 
         UIAmmo();

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff12f7cbc42f620409d9cc8e83ab0607, type: 3}
   m_Name: GunPistol
   m_EditorClassIdentifier: 
+  baseGunValues: {fileID: 11400000, guid: 692718ec88614ed48a6479dce61fc0f1, type: 2}
   gunName: Pistol
   gunDescription: 
   reloadSpeed: 1
@@ -20,10 +21,39 @@ MonoBehaviour:
   damage: 1
   speed: 60
   size: 0.05
-  mass: 1
-  drag: 0
-  duration: 10
+  duration: 2
   forceOverLifetime: {x: 0, y: 9, z: 0}
+  bulletTrailColor:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  bulletTrailDuration: 0.3
   magazineSize: 12
   startAmmoInInventory: 24
   maxAmmo: 120
@@ -36,7 +66,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91179f51a2e9c4c4c85b7b18b26d615e, type: 3}
   soundReload: {fileID: 8300000, guid: fc7644d6d65504242b7d3f605695ea62, type: 3}
   soundEmpty: {fileID: 8300000, guid: 132037694544e9044b90a22c44be3a83, type: 3}
-  ModifiersStart: []
-  ModifiersDuring:
-  - {fileID: 11400000, guid: 5b08447c26b44e84c864cab256164e2c, type: 2}
+  ModifiersPickup: []
+  ModifiersShoot: []
+  ModifiersFixedUpdate: []
   ModifiersColission: []

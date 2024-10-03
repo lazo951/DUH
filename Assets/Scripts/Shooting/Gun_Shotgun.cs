@@ -6,6 +6,7 @@ public class Gun_Shotgun : Gun_Base
 {
     public int numberOfPellets;
     public float spread;
+    public List<Gradient> rainbowColors = new List<Gradient>();
 
     public override void CheckProximity(Vector3 spawnPos, Transform spawnSource)
     {
@@ -17,12 +18,11 @@ public class Gun_Shotgun : Gun_Base
             if (Physics.Raycast(spawnPos, spreadDirection, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
             {
                 ShootHitPoint(Hit);
-                //Debug.DrawRay(spawnPos, spreadDirection, Color.red, 10f);
             }
             else
             {
+                gun.bulletTrailColor = rainbowColors[Random.Range(0, rainbowColors.Count)];
                 ShootRigidbody(spawnPos, spawnSource, spreadDirection);
-                //Debug.DrawRay(spawnPos, spreadDirection, Color.green, 10f);
             }
         }
     }

@@ -150,6 +150,7 @@ MonoBehaviour:
   predictLayer:
     serializedVersion: 2
     m_Bits: 3841
+  isPlayerBullet: 0
 --- !u!96 &7375559064003937521
 TrailRenderer:
   serializedVersion: 3
@@ -171,7 +172,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c9876f5e2010f3648817503f7c1b42e6, type: 2}
+  - {fileID: 2100000, guid: fb1894c84bd9c814a9673bbde9696cf7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -196,7 +197,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.2
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:

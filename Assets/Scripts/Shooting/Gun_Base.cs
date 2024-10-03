@@ -20,7 +20,7 @@ public class Gun_Base : MonoBehaviour
 
     private IEnumerator FireRate()
     {
-        yield return new WaitForSeconds(gun.rateOfFire);
+        yield return new WaitForSeconds(60f/gun.rateOfFireRPM);
         bulletInChamber = true;
     }
 

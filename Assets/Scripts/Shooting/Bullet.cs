@@ -32,6 +32,8 @@ public class Bullet : MonoBehaviour
         transform.position = spawnPos;
         transform.rotation = spawnRot;
         transform.localScale = new Vector3(gun.size, gun.size, gun.size);
+        GetComponent<TrailRenderer>().colorGradient = gun.bulletTrailColor;
+        GetComponent<TrailRenderer>().time = gun.bulletTrailDuration;
 
         gameObject.SetActive(true);
         rb.isKinematic = false;

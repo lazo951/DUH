@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Pickup_Modifier : Pickup_Base
@@ -11,7 +8,11 @@ public class Pickup_Modifier : Pickup_Base
     {
         modifier.AttachModifier();
 
-        DisplayPickup(modifier.modName + " for " + modifier.modForGun.gunName + " modifier");
+        if (modifier.modType == ModType.player)
+            DisplayPickup(modifier.modName + " modifier");
+        else
+            DisplayPickup(modifier.modName + " for " + modifier.modForGun.gunName + " modifier");
+
         Destroy(gameObject);
     }
 }
