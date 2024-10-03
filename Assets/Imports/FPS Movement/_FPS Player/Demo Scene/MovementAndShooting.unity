@@ -5878,8 +5878,8 @@ MonoBehaviour:
   spread: 0.1
   rainbowColors:
   - serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 0, g: 1, b: 0.027116776, a: 1}
+    key0: {r: 1, g: 0.19339621, b: 0.19339621, a: 1}
+    key1: {r: 1, g: 0.19607843, b: 0.19607843, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5907,8 +5907,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   - serializedVersion: 2
-    key0: {r: 0, g: 1, b: 0.02745098, a: 1}
-    key1: {r: 0, g: 0.12823725, b: 1, a: 1}
+    key0: {r: 0.3254717, g: 1, b: 0.3439882, a: 1}
+    key1: {r: 0.3254902, g: 1, b: 0.34509805, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5936,8 +5936,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   - serializedVersion: 2
-    key0: {r: 0, g: 0.12941177, b: 1, a: 1}
-    key1: {r: 1, g: 0.64591235, b: 0, a: 1}
+    key0: {r: 0, g: 0.3587625, b: 1, a: 1}
+    key1: {r: 0, g: 0.36078432, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5966,7 +5966,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   - serializedVersion: 2
     key0: {r: 1, g: 0.64705884, b: 0, a: 1}
-    key1: {r: 0.7868676, g: 0, b: 1, a: 1}
+    key1: {r: 1, g: 0.64705884, b: 0, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5994,8 +5994,8 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   - serializedVersion: 2
-    key0: {r: 0.7882353, g: 0, b: 1, a: 1}
-    key1: {r: 1, g: 0.06914881, b: 0, a: 1}
+    key0: {r: 0.83318526, g: 0.21226418, b: 1, a: 1}
+    key1: {r: 0.8352941, g: 0.21568628, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -8861,7 +8861,7 @@ GameObject:
   - component: {fileID: 1161773360}
   - component: {fileID: 1161773363}
   m_Layer: 15
-  m_Name: SMG
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17580,7 +17580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4a6df27628363458bcea6a8edba750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 11400000, guid: 86c7048267817aa4e83cc24a24fa1220, type: 2}
+  gun: {fileID: 11400000, guid: 1cb2d182bbc44804a80604d7f2354fc1, type: 2}
 --- !u!23 &2030850691
 MeshRenderer:
   m_ObjectHideFlags: 0

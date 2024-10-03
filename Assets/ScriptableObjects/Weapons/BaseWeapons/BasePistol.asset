@@ -16,7 +16,7 @@ MonoBehaviour:
   gunName: Pistol
   gunDescription: 
   reloadSpeed: 1
-  rateOfFireRPM: 180
+  rateOfFireRPM: 120
   recoilStrength: 2
   damage: 1
   speed: 60

@@ -17,7 +17,7 @@ MonoBehaviour:
   gunDescription: 
   reloadSpeed: 2
   rateOfFireRPM: 480
-  recoilStrength: 6
+  recoilStrength: 4
   damage: 1
   speed: 60
   size: 0.05
