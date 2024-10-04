@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c27708414573848b49615b17a64c48, type: 3}
+  m_Name: Grenade_BounceShot5X
+  m_EditorClassIdentifier: 
+  modName: Bounce Shot 5X
+  modType: 0
+  playerStage: 0
+  weaponStage: 3
+  modForGun: {fileID: 11400000, guid: 6a332e1a7defb18409eb6ff394bfa494, type: 2}
+  spread: 0.4
+  maxBounces: 5
+  bounceShotFamily:
+  - {fileID: 11400000, guid: b082c302a4d2a1f4895b4b043c77cbb0, type: 2}
+  - {fileID: 11400000, guid: b6141e6699fb9954fb226cb867199061, type: 2}
+  - {fileID: 11400000, guid: a75c8205d3694bf41af1add7cb4766ed, type: 2}

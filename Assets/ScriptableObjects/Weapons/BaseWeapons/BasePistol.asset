@@ -15,9 +15,11 @@ MonoBehaviour:
   baseGunValues: {fileID: 11400000}
   gunName: Pistol
   gunDescription: 
+  isPlayerGun: 1
   reloadSpeed: 1
   rateOfFireRPM: 120
-  recoilStrength: 2
+  cameraShakeIntensity: 2
+  cameraShakeDuration: 0.4
   damage: 1
   speed: 60
   size: 0.05
@@ -59,7 +61,7 @@ MonoBehaviour:
   maxAmmo: 120
   proximityCollisionMask:
     serializedVersion: 2
-    m_Bits: 3841
+    m_Bits: 1073745665
   proximityRadius: 3
   bulletSpawnDistance: 1
   soundShooting:

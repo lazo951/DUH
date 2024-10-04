@@ -9,9 +9,11 @@ public class GunTemplate : ScriptableObject
     [TextArea(3,5)] public string gunDescription;
 
     [Header("Weapon Stats")]
+    public bool isPlayerGun;
     public float reloadSpeed;
     public int rateOfFireRPM;
-    public float recoilStrength;
+    public float cameraShakeIntensity;
+    public float cameraShakeDuration;
 
     [Header("Bullet Stats")]
     public float damage;
@@ -74,9 +76,11 @@ public class GunTemplate : ScriptableObject
     {
         gunName = baseGunValues.gunName;
         gunDescription = baseGunValues.gunDescription;
+        isPlayerGun = baseGunValues.isPlayerGun;
         reloadSpeed = baseGunValues.reloadSpeed;
         rateOfFireRPM = baseGunValues.rateOfFireRPM;
-        recoilStrength = baseGunValues.recoilStrength;
+        cameraShakeIntensity = baseGunValues.cameraShakeIntensity;
+        cameraShakeDuration = baseGunValues.cameraShakeDuration;
         damage = baseGunValues.damage;
         speed = baseGunValues.speed;
         size = baseGunValues.size;

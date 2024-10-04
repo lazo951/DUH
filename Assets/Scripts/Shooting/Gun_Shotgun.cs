@@ -31,7 +31,7 @@ public class Gun_Shotgun : Gun_Base
     {
         Quaternion rot = Quaternion.LookRotation(spawnDirection);
 
-        Transform bullet = MainManager.Pooling.TakePlayerBullet();
-        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, rot, gun);
+        Transform bullet = MainManager.Pooling.TakeBullet(gun.isPlayerGun);
+        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, rot, gun, 0);
     }
 }

@@ -56,7 +56,15 @@ public class Manager_Pooling : MonoBehaviour
         }
     }
 
-    public Transform TakePlayerBullet()
+    public Transform TakeBullet(bool isPlayer)
+    {
+        if (isPlayer)
+            return TakePlayerBullet();
+        else
+            return TakeEnemyBullet();
+    }
+
+    private Transform TakePlayerBullet()
     {
         if (playerBulletPool.Count > 0)
         {
@@ -68,7 +76,7 @@ public class Manager_Pooling : MonoBehaviour
         return null;
     }
 
-    public Transform TakeEnemyBullet()
+    private Transform TakeEnemyBullet()
     {
         if (enemyBulletPool.Count > 0)
         {

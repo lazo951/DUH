@@ -61,8 +61,8 @@ public class Gun_Base : MonoBehaviour
         CheckProximity(spawnPos.position, spawnPos);
 
         //EFFECTS
-        MainManager.Effects.ShootEffects(gun.recoilStrength);
-        MainManager.Effects.CameraShake(gun.recoilStrength, 0.5f);
+        MainManager.Effects.ShootEffects(gun.cameraShakeIntensity);
+        MainManager.Effects.CameraShake(gun.cameraShakeIntensity, gun.cameraShakeDuration);
         PlaySoundEffect(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
 
         //CHECK AMMO
@@ -85,8 +85,8 @@ public class Gun_Base : MonoBehaviour
 
     public virtual void ShootRigidbody(Vector3 spawnPos, Transform spawnSource)
     {
-        Transform bullet = MainManager.Pooling.TakePlayerBullet();
-        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, spawnSource.rotation, gun);
+        Transform bullet = MainManager.Pooling.TakeBullet(gun.isPlayerGun);
+        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, spawnSource.rotation, gun, 0);
     }
 
     public virtual void ShootHitPoint(RaycastHit Hit)
@@ -95,7 +95,7 @@ public class Gun_Base : MonoBehaviour
 
         foreach (Mod_Base mod in gun.ModifiersColission)
         {
-            mod.ModifyWeaponColission(Hit.collider.gameObject, Hit.normal, Hit.point);
+            mod.ModifyWeaponColission(Hit.collider.gameObject, Hit.normal, Hit.point, gun, 0);
         }
     }
 

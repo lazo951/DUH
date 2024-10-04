@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public bool isPlayerBullet;
     [SerializeField] LayerMask predictLayer;
-    [SerializeField] bool isPlayerBullet;
 
-    Rigidbody rb;
     GunTemplate firedFromGun;
+    Rigidbody rb;
+    TrailRenderer trail;
+    int bounceCounter;
 
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
+        trail = GetComponent<TrailRenderer>();
     }
 
     private void OnDisable()
@@ -26,18 +29,25 @@ public class Bullet : MonoBehaviour
             MainManager.Pooling.ReturnEnemyBullet(transform);
     }
 
-    public void StartBullet(Vector3 spawnPos, Quaternion spawnRot, GunTemplate gun)
+    public void StartBullet(Vector3 spawnPos, Quaternion spawnRot, GunTemplate gun, int bCounter)
     {
+        //SETUP
         firedFromGun = gun;
         transform.position = spawnPos;
         transform.rotation = spawnRot;
         transform.localScale = new Vector3(gun.size, gun.size, gun.size);
-        GetComponent<TrailRenderer>().colorGradient = gun.bulletTrailColor;
-        GetComponent<TrailRenderer>().time = gun.bulletTrailDuration;
+        bounceCounter = bCounter;
 
+        //TRAIL
+        trail.colorGradient = gun.bulletTrailColor;
+        trail.time = gun.bulletTrailDuration;
+        trail.startWidth = gun.size;
+
+        //FORCE
         gameObject.SetActive(true);
         rb.isKinematic = false;
-        rb.AddForce(transform.forward * gun.speed, ForceMode.Impulse);
+        float finalSpeed = gun.speed / (bounceCounter + 1);
+        rb.AddForce(transform.forward * finalSpeed, ForceMode.Impulse);
 
         StartCoroutine(DurationEnd(gun.duration));
     }
@@ -85,9 +95,11 @@ public class Bullet : MonoBehaviour
 
     private void RealCollision(GameObject hitObject, Vector3 normal)
     {
+        bounceCounter++;
+
         foreach(Mod_Base mod in firedFromGun.ModifiersColission)
         {
-            mod.ModifyWeaponColission(hitObject, normal, transform.position);
+            mod.ModifyWeaponColission(hitObject, normal, transform.position, firedFromGun, bounceCounter);
         }
 
         hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal, firedFromGun.size);

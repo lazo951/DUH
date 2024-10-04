@@ -3,10 +3,9 @@ using UnityEngine;
 public abstract class Mod_Base : ScriptableObject
 {
     public string modName;
-    [TextArea(3, 5)] public string modDescription;
 
     public ModType modType;
-    public ModPlayerType playerType;
+    public ModPlayerType playerStage;
     public ModWeaponType weaponStage;
     public GunTemplate modForGun;
 
@@ -20,7 +19,7 @@ public abstract class Mod_Base : ScriptableObject
         //
     }
 
-    public virtual void ModifyWeaponColission(GameObject hitObject, Vector3 normal, Vector3 impactPoint)
+    public virtual void ModifyWeaponColission(GameObject hitObject, Vector3 normal, Vector3 impactPoint, GunTemplate firedFromGun, int bounceCounter)
     {
         //
     }

@@ -15,9 +15,11 @@ MonoBehaviour:
   baseGunValues: {fileID: 11400000}
   gunName: Grenade Launcher
   gunDescription: 
+  isPlayerGun: 1
   reloadSpeed: 2
   rateOfFireRPM: 45
-  recoilStrength: 14
+  cameraShakeIntensity: 15
+  cameraShakeDuration: 0.75
   damage: 10
   speed: 30
   size: 0.3
@@ -59,7 +61,7 @@ MonoBehaviour:
   maxAmmo: 120
   proximityCollisionMask:
     serializedVersion: 2
-    m_Bits: 3841
+    m_Bits: 1073745665
   proximityRadius: 3
   bulletSpawnDistance: 1
   soundShooting:

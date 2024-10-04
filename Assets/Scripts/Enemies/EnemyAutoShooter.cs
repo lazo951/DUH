@@ -24,8 +24,8 @@ public class EnemyAutoShooter : MonoBehaviour
 
         bulletInChamber = false;
 
-        Transform bullet = MainManager.Pooling.TakeEnemyBullet();
-        bullet?.GetComponent<Bullet>().StartBullet(spawnPos.position + spawnPos.forward * gun.bulletSpawnDistance, spawnPos.rotation, gun);
+        Transform bullet = MainManager.Pooling.TakeBullet(gun.isPlayerGun);
+        bullet?.GetComponent<Bullet>().StartBullet(spawnPos.position + spawnPos.forward * gun.bulletSpawnDistance, spawnPos.rotation, gun, 0);
 
         StartCoroutine(FireRate());
     }

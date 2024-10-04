@@ -15,6 +15,7 @@ MonoBehaviour:
   baseGunValues: {fileID: 0}
   gunName: EnemyGun1
   gunDescription: 
+  isPlayerGun: 0
   reloadSpeed: 1
   rateOfFireRPM: 120
   recoilStrength: 0
@@ -59,7 +60,7 @@ MonoBehaviour:
   maxAmmo: 0
   proximityCollisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3221229313
   proximityRadius: 0
   bulletSpawnDistance: 0
   soundShooting: []

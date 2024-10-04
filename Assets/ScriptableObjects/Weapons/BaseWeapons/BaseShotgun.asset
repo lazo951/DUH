@@ -15,9 +15,11 @@ MonoBehaviour:
   baseGunValues: {fileID: 11400000}
   gunName: Shotgun
   gunDescription: 
+  isPlayerGun: 1
   reloadSpeed: 2
   rateOfFireRPM: 90
-  recoilStrength: 10
+  cameraShakeIntensity: 10
+  cameraShakeDuration: 0.5
   damage: 2
   speed: 60
   size: 0.05
@@ -59,7 +61,7 @@ MonoBehaviour:
   maxAmmo: 50
   proximityCollisionMask:
     serializedVersion: 2
-    m_Bits: 3841
+    m_Bits: 1073745665
   proximityRadius: 3
   bulletSpawnDistance: 1
   soundShooting:

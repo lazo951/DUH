@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 4585873283814389049, guid: 039f9479515bca24bb0bd884851ae83f,
         type: 3}
       propertyPath: predictLayer.m_Bits
-      value: 2147487489
+      value: 3221229313
       objectReference: {fileID: 0}
     - target: {fileID: 7375559064003937521, guid: 039f9479515bca24bb0bd884851ae83f,
         type: 3}

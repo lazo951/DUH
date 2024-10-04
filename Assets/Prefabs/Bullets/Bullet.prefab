@@ -149,8 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   predictLayer:
     serializedVersion: 2
-    m_Bits: 3841
+    m_Bits: 1073745665
   isPlayerBullet: 0
+  firedFromGun: {fileID: 0}
 --- !u!96 &7375559064003937521
 TrailRenderer:
   serializedVersion: 3

@@ -15,9 +15,11 @@ MonoBehaviour:
   baseGunValues: {fileID: 11400000}
   gunName: Assault Rifle
   gunDescription: 
+  isPlayerGun: 1
   reloadSpeed: 2
   rateOfFireRPM: 480
-  recoilStrength: 4
+  cameraShakeIntensity: 4
+  cameraShakeDuration: 0.3
   damage: 1
   speed: 60
   size: 0.05
@@ -59,7 +61,7 @@ MonoBehaviour:
   maxAmmo: 120
   proximityCollisionMask:
     serializedVersion: 2
-    m_Bits: 3841
+    m_Bits: 1073745665
   proximityRadius: 3
   bulletSpawnDistance: 1
   soundShooting:
