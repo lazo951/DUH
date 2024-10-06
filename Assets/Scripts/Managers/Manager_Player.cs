@@ -6,6 +6,8 @@ using TMPro;
 
 public class Manager_Player : MonoBehaviour
 {
+    public Transform player;
+
     [Header("Stats")]
     public float health;
     public float maxHealth;

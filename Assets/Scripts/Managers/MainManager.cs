@@ -16,10 +16,10 @@ public class MainManager : MonoBehaviour
         Effects = GetComponent<Manager_Effects>();
         Shooting = GetComponent<Manager_Shooting>();
 
-        Pooling.SetupValues();
-        Player.SetupValues();
-        Effects.SetupValues();
-        Shooting.SetupValues();
+        Pooling?.SetupValues();
+        Player?.SetupValues();
+        Effects?.SetupValues();
+        Shooting?.SetupValues();
     }
 }
 

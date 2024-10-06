@@ -18,13 +18,14 @@ MonoBehaviour:
   isPlayerGun: 1
   reloadSpeed: 2
   rateOfFireRPM: 90
-  cameraShakeIntensity: 10
-  cameraShakeDuration: 0.5
+  spread: 0.1
   damage: 2
   speed: 60
   size: 0.05
-  duration: 1
+  duration: 0.5
   forceOverLifetime: {x: 0, y: 0, z: 0}
+  cameraShakeIntensity: 10
+  cameraShakeDuration: 0.5
   bulletTrailColor:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 0.02745098, a: 1}

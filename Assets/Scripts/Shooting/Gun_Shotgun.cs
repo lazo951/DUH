@@ -5,14 +5,13 @@ using UnityEngine;
 public class Gun_Shotgun : Gun_Base
 {
     public int numberOfPellets;
-    public float spread;
     public List<Gradient> rainbowColors = new List<Gradient>();
 
     public override void CheckProximity(Vector3 spawnPos, Transform spawnSource)
     {
         for (int i = 0; i < numberOfPellets; i++)
         {
-            Vector3 spreadDirection = spawnSource.forward + spawnSource.up*Random.Range(-spread, spread) + spawnSource.right* Random.Range(-spread, spread);
+            Vector3 spreadDirection = spawnSource.forward + spawnSource.up*Random.Range(-gun.spread, gun.spread) + spawnSource.right* Random.Range(-gun.spread, gun.spread);
             RaycastHit Hit;
 
             if (Physics.Raycast(spawnPos, spreadDirection, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))

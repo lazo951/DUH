@@ -113,7 +113,7 @@ public class Gun_Base : MonoBehaviour
 
     public virtual void Reload()
     {
-        if (MainManager.Shooting.ammo[gun] == 0)
+        if (MainManager.Shooting.ammo[gun] == 0 || isReloading || bulletsInMagazine == gun.magazineSize)
             return;
 
         PlaySoundEffect(gun.soundReload);
@@ -124,5 +124,10 @@ public class Gun_Base : MonoBehaviour
     {
         gunAudio.pitch = Random.Range(0.97f, 1.03f);
         gunAudio.PlayOneShot(clip);
+    }
+
+    private void OnDisable()
+    {
+        isReloading = false;
     }
 }

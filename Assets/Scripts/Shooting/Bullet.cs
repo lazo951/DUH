@@ -12,21 +12,10 @@ public class Bullet : MonoBehaviour
     TrailRenderer trail;
     int bounceCounter;
 
-    private void OnEnable()
+    public void SetupValues()
     {
         rb = GetComponent<Rigidbody>();
         trail = GetComponent<TrailRenderer>();
-    }
-
-    private void OnDisable()
-    {
-        rb.isKinematic = true;
-        StopAllCoroutines();
-
-        if(isPlayerBullet)
-            MainManager.Pooling.ReturnPlayerBullet(transform);
-        else
-            MainManager.Pooling.ReturnEnemyBullet(transform);
     }
 
     public void StartBullet(Vector3 spawnPos, Quaternion spawnRot, GunTemplate gun, int bCounter)
@@ -65,13 +54,8 @@ public class Bullet : MonoBehaviour
             mod.ModifyWeaponFixedUpdate(transform);
         }
 
-        ApplyForceOverLifetime();
-        PredictCollision();
-    }
-
-    private void ApplyForceOverLifetime()
-    {
         rb.AddForce(firedFromGun.forceOverLifetime);
+        PredictCollision();
     }
 
     private void PredictCollision()
@@ -104,5 +88,12 @@ public class Bullet : MonoBehaviour
 
         hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal, firedFromGun.size);
         gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        rb.isKinematic = true;
+        StopAllCoroutines();
+        MainManager.Pooling.ReturnBullet(transform, isPlayerBullet);
     }
 }

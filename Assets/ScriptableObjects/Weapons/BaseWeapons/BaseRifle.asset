@@ -18,13 +18,14 @@ MonoBehaviour:
   isPlayerGun: 1
   reloadSpeed: 2
   rateOfFireRPM: 480
-  cameraShakeIntensity: 4
-  cameraShakeDuration: 0.3
+  spread: 0
   damage: 1
   speed: 60
   size: 0.05
   duration: 2
   forceOverLifetime: {x: 0, y: 0, z: 0}
+  cameraShakeIntensity: 4
+  cameraShakeDuration: 0.3
   bulletTrailColor:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -65,9 +66,8 @@ MonoBehaviour:
   proximityRadius: 3
   bulletSpawnDistance: 1
   soundShooting:
-  - {fileID: 8300000, guid: 1a2dec2e761f3b84c830b9b72776da87, type: 3}
-  - {fileID: 8300000, guid: 805125f3b1c5f494f90456348b853911, type: 3}
-  - {fileID: 8300000, guid: 1e61642356a51e94c9385bfe11f56730, type: 3}
+  - {fileID: 8300000, guid: 6dbbf5f0c3ccfab48ab58071fc9012da, type: 3}
+  - {fileID: 8300000, guid: 6a70b6448915135418054ed453398a99, type: 3}
   soundReload: {fileID: 8300000, guid: 0f23a591ac24a8845873efcd5aac2cad, type: 3}
   soundEmpty: {fileID: 8300000, guid: 132037694544e9044b90a22c44be3a83, type: 3}
   ModifiersPickup: []

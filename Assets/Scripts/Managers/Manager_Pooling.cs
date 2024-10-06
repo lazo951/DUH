@@ -34,12 +34,14 @@ public class Manager_Pooling : MonoBehaviour
         for (int i = 0; i < playerBulletPoolSize; i++)
         {
             playerBulletPool.Add(Instantiate(playerBulletPrefab, bulletParent).transform);
+            playerBulletPool[i].GetComponent<Bullet>().SetupValues();
             playerBulletPool[i].gameObject.SetActive(false);
         }
 
         for (int i = 0; i < enemyBulletPoolSize; i++)
         {
             enemyBulletPool.Add(Instantiate(enemyBulletPrefab, bulletParent).transform);
+            enemyBulletPool[i].GetComponent<Bullet>().SetupValues();
             enemyBulletPool[i].gameObject.SetActive(false);
         }
 
@@ -88,7 +90,15 @@ public class Manager_Pooling : MonoBehaviour
         return null;
     }
 
-    public void ReturnPlayerBullet(Transform bullet)
+    public void ReturnBullet(Transform bullet, bool isPlayer)
+    {
+        if (isPlayer)
+            ReturnPlayerBullet(bullet);
+        else
+            ReturnEnemyBullet(bullet);
+    }
+
+    private void ReturnPlayerBullet(Transform bullet)
     {
         if (!playerBulletPool.Contains(bullet))
         {
@@ -96,7 +106,7 @@ public class Manager_Pooling : MonoBehaviour
         }
     }
 
-    public void ReturnEnemyBullet(Transform bullet)
+    private void ReturnEnemyBullet(Transform bullet)
     {
         if (!enemyBulletPool.Contains(bullet))
         {

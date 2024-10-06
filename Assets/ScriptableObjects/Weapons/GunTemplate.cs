@@ -12,8 +12,7 @@ public class GunTemplate : ScriptableObject
     public bool isPlayerGun;
     public float reloadSpeed;
     public int rateOfFireRPM;
-    public float cameraShakeIntensity;
-    public float cameraShakeDuration;
+    public float spread;
 
     [Header("Bullet Stats")]
     public float damage;
@@ -23,6 +22,8 @@ public class GunTemplate : ScriptableObject
     public Vector3 forceOverLifetime;
 
     [Header("Effects")]
+    public float cameraShakeIntensity;
+    public float cameraShakeDuration;
     public Gradient bulletTrailColor;
     public float bulletTrailDuration;
 
@@ -79,6 +80,7 @@ public class GunTemplate : ScriptableObject
         isPlayerGun = baseGunValues.isPlayerGun;
         reloadSpeed = baseGunValues.reloadSpeed;
         rateOfFireRPM = baseGunValues.rateOfFireRPM;
+        spread = baseGunValues.spread;
         cameraShakeIntensity = baseGunValues.cameraShakeIntensity;
         cameraShakeDuration = baseGunValues.cameraShakeDuration;
         damage = baseGunValues.damage;
