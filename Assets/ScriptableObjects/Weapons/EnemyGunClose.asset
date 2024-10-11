@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff12f7cbc42f620409d9cc8e83ab0607, type: 3}
-  m_Name: EnemyGun1
+  m_Name: EnemyGunClose
   m_EditorClassIdentifier: 
   baseGunValues: {fileID: 0}
   gunName: EnemyGun1

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7654704588851113330}
   - component: {fileID: 5737276837101015369}
   - component: {fileID: 8121856530758806626}
-  - component: {fileID: 532595572071668}
   - component: {fileID: 6059886640226590615}
   - component: {fileID: 7384394918961336906}
   - component: {fileID: 7327595079152437280}
@@ -87,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &532595572071668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2346679164383855057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73af091ee202ec4d8b65fcdff1fa419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun: {fileID: 11400000, guid: cebdbdd08d2a46b4da233d43a3e7a8e4, type: 2}
-  bulletsInMagazine: 0
 --- !u!65 &6059886640226590615
 BoxCollider:
   m_ObjectHideFlags: 0

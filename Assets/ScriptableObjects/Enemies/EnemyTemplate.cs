@@ -4,10 +4,16 @@ using UnityEngine;
 public class EnemyTemplate : ScriptableObject
 {
     public string enemyName;
-    [TextArea(3, 5)] public string enemyDescription;
+    public GameObject enemyPrefab;
 
     [Header("Enemy Stats")]
     public float startHealth;
+    public float moveSpeed;
+    public float turnSpeed;
+
+    [Header("AI")]
+    public float thinkFrequency;
+    public float preferredDistanceToPlayer;
 
     [Header("Damage Effects")]
     public Color glowEffectColor;

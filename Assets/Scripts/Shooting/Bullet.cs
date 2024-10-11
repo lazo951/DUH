@@ -93,7 +93,7 @@ public class Bullet : MonoBehaviour
     private void OnDisable()
     {
         rb.isKinematic = true;
-        StopAllCoroutines();
+        //StopAllCoroutines();
         MainManager.Pooling.ReturnBullet(transform, isPlayerBullet);
     }
 }

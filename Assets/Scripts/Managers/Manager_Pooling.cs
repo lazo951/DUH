@@ -29,6 +29,12 @@ public class Manager_Pooling : MonoBehaviour
     [SerializeField] int explosionPoolSize;
     int explosionPoolCounter;
 
+    //Enemies
+    [SerializeField] List<EnemyTemplate> allEnemies = new List<EnemyTemplate>();
+    Dictionary<EnemyTemplate, List<Transform>> enemies = new Dictionary<EnemyTemplate, List<Transform>>();
+    [SerializeField] int enemyPoolSize;
+    [SerializeField] Transform enemyParent;
+
     public void SetupValues()
     {
         for (int i = 0; i < playerBulletPoolSize; i++)
@@ -56,7 +62,25 @@ public class Manager_Pooling : MonoBehaviour
             explosionPool.Add(Instantiate(explosionPrefab, impactParent).transform);
             explosionPool[i].gameObject.SetActive(false);
         }
+
+        foreach(EnemyTemplate enem in allEnemies)
+        {
+            List<Transform> tempList = new List<Transform>();
+            for(int i = 0; i < enemyPoolSize; i++)
+            {
+                tempList.Add(Instantiate(enem.enemyPrefab, enemyParent).transform);
+                tempList[i].GetComponent<AIThink_Base>().SetupValues();
+            }
+
+            enemies.Add(enem, tempList);
+            foreach(Transform enemObject in enemies[enem])
+            {
+                enemObject.gameObject.SetActive(false);
+            }
+        }
     }
+
+    #region Bullets
 
     public Transform TakeBullet(bool isPlayer)
     {
@@ -114,6 +138,10 @@ public class Manager_Pooling : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Effects
+
     public void PlaceImpact(Vector3 pos, Vector3 normal, Vector3 scale)
     {
         if (normal == Vector3.zero)
@@ -149,4 +177,30 @@ public class Manager_Pooling : MonoBehaviour
         if(explosionPoolCounter >= explosionPoolSize)
             explosionPoolCounter = 0;
     }
+
+    #endregion
+
+    #region Enemies
+
+    public Transform TakeEnemy(EnemyTemplate enem)
+    {
+        if (enemies[enem].Count > 0)
+        {
+            Transform newEnemy = enemies[enem][0];
+            enemies[enem].RemoveAt(0);
+            return newEnemy;
+        }
+
+        return null;
+    }
+
+    public void ReturnEnemy(EnemyTemplate enem, Transform enemyObject)
+    {
+        if (!enemies[enem].Contains(enemyObject))
+        {
+            enemies[enem].Add(enemyObject);
+        }
+    }
+
+    #endregion
 }

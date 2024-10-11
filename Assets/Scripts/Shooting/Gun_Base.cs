@@ -12,10 +12,16 @@ public class Gun_Base : MonoBehaviour
 
     AudioSource gunAudio;
 
+    [Header("Animations")]
+    public float realReloadTime;
+    Animator gunAnimator;
+
     private void Start()
     {
         bulletsInMagazine = gun.magazineSize;
         gunAudio = GetComponent<AudioSource>();
+        gunAnimator = GetComponentInChildren<Animator>();
+        UpdateAnimationReload();
     }
 
     private IEnumerator FireRate()
@@ -44,7 +50,10 @@ public class Gun_Base : MonoBehaviour
         if (!bulletInChamber || isReloading)
         {
             if (MainManager.Shooting.ammo[gun] < 1 && !gunAudio.isPlaying)
+            {
                 PlaySoundEffect(gun.soundEmpty);
+                gunAnimator?.SetTrigger("ShootEmpty");
+            }
 
             return;
         }
@@ -64,6 +73,7 @@ public class Gun_Base : MonoBehaviour
         MainManager.Effects.ShootEffects(gun.cameraShakeIntensity);
         MainManager.Effects.CameraShake(gun.cameraShakeIntensity, gun.cameraShakeDuration);
         PlaySoundEffect(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
+        gunAnimator?.SetTrigger("Shoot");
 
         //CHECK AMMO
         CheckAmmoState();
@@ -117,6 +127,8 @@ public class Gun_Base : MonoBehaviour
             return;
 
         PlaySoundEffect(gun.soundReload);
+        gunAnimator?.SetTrigger("Reload");
+
         StartCoroutine(WaitReload());
     }
 
@@ -126,8 +138,24 @@ public class Gun_Base : MonoBehaviour
         gunAudio.PlayOneShot(clip);
     }
 
-    private void OnDisable()
+    public virtual void SetAnimationFloat(string state, float value)
+    {
+        gunAnimator?.SetFloat(state, value);
+    }
+
+    public virtual void UpdateAnimationReload()
+    {
+        float newReloadSpeed = realReloadTime / (gun.reloadSpeed - 0.2f);
+        gunAnimator?.SetFloat("reloadSpeed", newReloadSpeed);
+    }
+
+    private void OnEnable()
     {
         isReloading = false;
+
+        if (bulletInChamber == false)
+        {
+            CheckAmmoState();
+        }
     }
 }

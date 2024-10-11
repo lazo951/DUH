@@ -23,6 +23,10 @@ public class Manager_Shooting : MonoBehaviour
     public TMP_Text txtAmmo;
     public TMP_Text txtSelectedWeapon;
 
+    [Header("Animation Info")]
+    CharacterController playerController;
+    PlayerMovement scriptPlayer;
+
     public void SetupValues()
     {
         for (int i = 0; i < allGuns.Count; i++)
@@ -31,6 +35,9 @@ public class Manager_Shooting : MonoBehaviour
             guns.Add(allGuns[i], allGunsTransforms[i]);
             allGuns[i].ResetValues();
         }
+
+        playerController = MainManager.Player.player.GetComponent<CharacterController>();
+        scriptPlayer = MainManager.Player.player.GetComponent<PlayerMovement>();
 
         UIAmmo();
     }
@@ -65,6 +72,17 @@ public class Manager_Shooting : MonoBehaviour
 
         Quaternion rotY = Quaternion.AngleAxis(mouseInput.x * swayStrength, pickedGuns[currentGun].forward);
         pickedGuns[currentGun].localRotation = Quaternion.Slerp(pickedGuns[currentGun].localRotation, rotY, swaySpeed * Time.deltaTime);
+    }
+
+    private void Update()
+    {
+        if (!activeGun)
+            return;
+
+        if(!scriptPlayer.grounded || playerController.velocity.magnitude < 0.1f)
+            activeGun.SetAnimationFloat("moveSpeed", 0f);
+        else
+            activeGun.SetAnimationFloat("moveSpeed", scriptPlayer.speed);
     }
 
     #region GunSwitch
