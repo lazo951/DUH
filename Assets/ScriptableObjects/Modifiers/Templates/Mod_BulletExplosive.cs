@@ -16,7 +16,7 @@ public class Mod_BulletExplosive : Mod_Base
         Collider[] colliders = Physics.OverlapSphere(impactPoint, explosiveRadius);
         foreach (Collider hit in colliders)
         {
-            hit.GetComponent<Object_Base>()?.Damage(modForGun.damage, impactPoint, Vector3.zero, modForGun.size);
+            hit.GetComponent<Object_Base>()?.Damage(modForGun.damage, impactPoint, Vector3.zero, modForGun.size, modForGun.isPlayerGun);
             MainManager.Pooling.PlaceExplosion(impactPoint, new Vector3(explosiveRadius, explosiveRadius, explosiveRadius));
         }
     }

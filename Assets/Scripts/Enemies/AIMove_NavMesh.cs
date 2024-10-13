@@ -31,7 +31,7 @@ public class AIMove_NavMesh : AIMove_Base
             agent.Warp(correctedPos.position);
     }
 
-    public override void MoveTo(Vector3 destination)
+    public override void MoveTo(Vector3 destination, int counter)
     {
         agent.isStopped = false;
         NavMeshHit correctedPos;

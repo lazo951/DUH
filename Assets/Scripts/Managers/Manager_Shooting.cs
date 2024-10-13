@@ -27,6 +27,9 @@ public class Manager_Shooting : MonoBehaviour
     CharacterController playerController;
     PlayerMovement scriptPlayer;
 
+    [Header("Audio")]
+    public AudioSource gunAudio;
+
     public void SetupValues()
     {
         for (int i = 0; i < allGuns.Count; i++)
@@ -65,6 +68,8 @@ public class Manager_Shooting : MonoBehaviour
         }
     }
 
+    #region Animation
+
     public void SwayWeapon(Vector2 mouseInput)
     {
         if (!activeGun)
@@ -84,6 +89,8 @@ public class Manager_Shooting : MonoBehaviour
         else
             activeGun.SetAnimationFloat("moveSpeed", scriptPlayer.speed);
     }
+
+    #endregion
 
     #region GunSwitch
     public void SwitchGunDirect(int num)
@@ -145,6 +152,16 @@ public class Manager_Shooting : MonoBehaviour
 
         txtAmmo.text = activeGun.bulletsInMagazine.ToString() + "/" + ammo[activeGun.gun].ToString();
         txtSelectedWeapon.text = activeGun.gun.gunName;
+    }
+
+    #endregion
+
+    #region Audio
+
+    public void PlayAudio(AudioClip clip)
+    {
+        gunAudio.pitch = Random.Range(0.97f, 1.03f);
+        gunAudio.PlayOneShot(clip);
     }
 
     #endregion

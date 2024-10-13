@@ -12,8 +12,8 @@ public class Object_EnemyBodyPart : Object_Base
         scriptMain = GetComponentInParent<AIThink_Base>();
     }
 
-    public override void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal, float projectileScale)
+    public override void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal, float projectileScale, bool isPlayer)
     {
-        scriptMain.Damage(dmg * multiplier, impactPoint, faceNormal);
+        scriptMain.Damage(dmg * multiplier, impactPoint, faceNormal, isPlayer);
     }
 }

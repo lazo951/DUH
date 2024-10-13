@@ -17,9 +17,9 @@ MonoBehaviour:
     type: 3}
   startHealth: 2
   moveSpeed: 4
-  turnSpeed: 2
+  turnSpeed: 5
   thinkFrequency: 0.2
-  preferredDistanceToPlayer: 5
+  preferredDistanceToPlayer: 7
   glowEffectColor: {r: 1, g: 1, b: 1, a: 1}
   glowEffectDuration: 0.1
   glowEffectStrength: 1

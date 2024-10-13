@@ -14,7 +14,7 @@ public class AIMove_Base : MonoBehaviour
         //
     }
 
-    public virtual void MoveTo(Vector3 destination)
+    public virtual void MoveTo(Vector3 destination, int counter)
     {
         //
     }

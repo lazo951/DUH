@@ -10,6 +10,9 @@ public class AIMove_Flying : AIMove_Base
     public LayerMask colideLayer;
     public float flyRandomness;
     public float flyHeight;
+    public float heightRandomness;
+    
+    public int maxRecursions;
 
     bool isMoving;
     Vector3 correctedDestination, finalDestination;
@@ -24,21 +27,27 @@ public class AIMove_Flying : AIMove_Base
         finalRotation = Quaternion.identity;
     }
 
-    public override void MoveTo(Vector3 destination)
+    public override void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
+
+    public override void MoveTo(Vector3 destination, int counter)
     {
         isMoving = false;
+        counter++;
         correctedDestination = destination;
         correctedDestination += Random.insideUnitSphere * flyRandomness;
 
         RaycastHit hit;
         if (Physics.Raycast(correctedDestination, Vector3.down, out hit, 100, colideLayer, QueryTriggerInteraction.Ignore))
         {
-            correctedDestination = hit.point + Vector3.up * flyHeight;
+            correctedDestination = hit.point + Vector3.up * (flyHeight + Random.Range(0f, heightRandomness));
         }
 
-        if (Physics.Linecast(transform.position, correctedDestination, colideLayer))
+        if (Physics.Linecast(transform.position, correctedDestination, colideLayer) && counter < maxRecursions)
         {
-            MoveTo(correctedDestination);
+            MoveTo(correctedDestination, counter);
             return;
         }
 

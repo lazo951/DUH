@@ -10,24 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff12f7cbc42f620409d9cc8e83ab0607, type: 3}
-  m_Name: EnemyGunClose
+  m_Name: EnemyGunMelee
   m_EditorClassIdentifier: 
   baseGunValues: {fileID: 0}
-  gunName: EnemyGun1
+  gunName: EnemyGunMelee
   gunDescription: 
   isPlayerGun: 0
   reloadSpeed: 1
   rateOfFireRPM: 120
-  recoilStrength: 0
+  spread: 0.1
   damage: 1
   speed: 30
   size: 0.1
   duration: 4
   forceOverLifetime: {x: 0, y: 0, z: 0}
+  cameraShakeIntensity: 0
+  cameraShakeDuration: 0
   bulletTrailColor:
     serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0, b: 0, a: 1}
+    key0: {r: 1, g: 0, b: 0, a: 0.78431374}
+    key1: {r: 1, g: 0, b: 0, a: 0.09803922}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}

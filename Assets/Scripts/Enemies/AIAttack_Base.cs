@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class AIAttack_Base : MonoBehaviour
@@ -8,14 +9,16 @@ public class AIAttack_Base : MonoBehaviour
     public Transform gunMuzzle;
 
     bool bulletInChamber = true;
-    AudioSource gunAudio;
 
-    private void Start()
+    public virtual void AimAt(Transform target)
     {
-        gunAudio = GetComponent<AudioSource>();
+        RaycastHit hit;
+        if (Physics.Raycast(gunMuzzle.position, gunMuzzle.forward, out hit, 100, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
+            if(hit.collider.transform == target)
+                Shoot();
     }
 
-    public virtual void FireGun()
+    public virtual void Shoot()
     {
         if (!bulletInChamber)
             return;
@@ -27,33 +30,39 @@ public class AIAttack_Base : MonoBehaviour
             mod.ModifyWeaponShoot(gunMuzzle, transform.gameObject);
         }
 
+        //play audio
+        //play muzzle flash
+
         CheckProximity(gunMuzzle.position, gunMuzzle);
         StartCoroutine(FireRate());
     }
 
     public virtual void CheckProximity(Vector3 spawnPos, Transform spawnSource)
     {
+        Vector3 spreadDirection = spawnSource.forward + spawnSource.up * Random.Range(-gun.spread, gun.spread) + spawnSource.right * Random.Range(-gun.spread, gun.spread);
         RaycastHit Hit;
 
-        if (Physics.Raycast(spawnPos, spawnSource.forward, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(spawnPos, spreadDirection, out Hit, gun.proximityRadius, gun.proximityCollisionMask, QueryTriggerInteraction.Ignore))
         {
             ShootHitPoint(Hit);
         }
         else
         {
-            ShootRigidbody(spawnPos, spawnSource);
+            ShootRigidbody(spawnPos, spawnSource, spreadDirection);
         }
     }
 
-    public virtual void ShootRigidbody(Vector3 spawnPos, Transform spawnSource)
+    public virtual void ShootRigidbody(Vector3 spawnPos, Transform spawnSource, Vector3 spawnDirection)
     {
+        Quaternion rot = Quaternion.LookRotation(spawnDirection);
+
         Transform bullet = MainManager.Pooling.TakeBullet(gun.isPlayerGun);
-        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, spawnSource.rotation, gun, 0);
+        bullet?.GetComponent<Bullet>().StartBullet(spawnPos + spawnSource.forward * gun.bulletSpawnDistance, rot, gun, 0);
     }
 
     public virtual void ShootHitPoint(RaycastHit Hit)
     {
-        Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal, gun.size);
+        Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal, gun.size, gun.isPlayerGun);
 
         foreach (Mod_Base mod in gun.ModifiersColission)
         {
