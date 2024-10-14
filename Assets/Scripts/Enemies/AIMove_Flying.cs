@@ -14,8 +14,7 @@ public class AIMove_Flying : AIMove_Base
     
     public int maxRecursions;
 
-    bool isMoving;
-    Vector3 correctedDestination, finalDestination;
+    Vector3 correctedDestination;
     Quaternion finalRotation;
 
     public override void SetupValues(float moveSpeed, float turnSpeed)
@@ -34,7 +33,6 @@ public class AIMove_Flying : AIMove_Base
 
     public override void MoveTo(Vector3 destination, int counter)
     {
-        isMoving = false;
         counter++;
         correctedDestination = destination;
         correctedDestination += Random.insideUnitSphere * flyRandomness;
@@ -51,18 +49,25 @@ public class AIMove_Flying : AIMove_Base
             return;
         }
 
+        //float dist = Vector3.Distance(transform.position, correctedDestination);
+        //if (Physics.SphereCast(transform.position, 1.5f, correctedDestination, out hit, dist, colideLayer) && counter < maxRecursions)
+        //{
+        //    MoveTo(correctedDestination, counter);
+        //    return;
+        //}
+
         LookAt(correctedDestination);
-        isMoving = true;
+        AddForceTowards(correctedDestination);
+    }
+
+    private void AddForceTowards(Vector3 destination)
+    {
+        Vector3 direction = destination - transform.position;
+        rb.AddForce(direction * moveForce, ForceMode.Force);
     }
 
     private void FixedUpdate()
     {
-        if(isMoving)
-        {
-            finalDestination = Vector3.MoveTowards(transform.position, correctedDestination, moveForce * Time.deltaTime);
-            rb.MovePosition(finalDestination);
-        }
-
         transform.rotation = Quaternion.Lerp(transform.rotation, finalRotation, turnForce * Time.deltaTime);
     }
 

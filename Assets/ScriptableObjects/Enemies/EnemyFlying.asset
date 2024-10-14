@@ -16,8 +16,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 786952266029758472, guid: 10f71aefae817a04cbd6deb6a0128d27,
     type: 3}
   startHealth: 4
-  moveSpeed: 5
-  turnSpeed: 6
+  moveSpeed: 15
+  turnSpeed: 10
   thinkFrequency: 0.2
   preferredDistanceToPlayer: 12
   glowEffectColor: {r: 1, g: 1, b: 1, a: 1}
