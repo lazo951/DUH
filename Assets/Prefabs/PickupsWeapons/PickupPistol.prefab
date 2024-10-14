@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2259897229722685970}
   - component: {fileID: 5728881977260902999}
   - component: {fileID: 6289210588242889037}
-  - component: {fileID: 1337498007821982702}
   - component: {fileID: 7329234216242154474}
   - component: {fileID: 7051106527433764153}
   - component: {fileID: 1268719346688861060}
@@ -87,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1337498007821982702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6543837210894192223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73af091ee202ec4d8b65fcdff1fa419, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun: {fileID: 11400000, guid: 6d840d275446e454ab614e2d22150c8c, type: 2}
-  bulletsInMagazine: 0
 --- !u!65 &7329234216242154474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -161,5 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964fc2d743a174c4197c2b7ceea30b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupName: Pistol
   pickupGun: {fileID: 11400000, guid: 6d840d275446e454ab614e2d22150c8c, type: 2}

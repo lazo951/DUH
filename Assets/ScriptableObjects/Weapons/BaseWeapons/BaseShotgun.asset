@@ -16,7 +16,7 @@ MonoBehaviour:
   gunName: Shotgun
   gunDescription: 
   isPlayerGun: 1
-  reloadSpeed: 2
+  reloadSpeed: 2.31
   rateOfFireRPM: 90
   spread: 0.1
   damage: 2

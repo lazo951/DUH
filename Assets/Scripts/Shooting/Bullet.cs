@@ -86,14 +86,14 @@ public class Bullet : MonoBehaviour
             mod.ModifyWeaponColission(hitObject, normal, transform.position, firedFromGun, bounceCounter);
         }
 
-        hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal, firedFromGun.size);
+        hitObject.GetComponent<Object_Base>()?.Damage(firedFromGun.damage, transform.position, normal, firedFromGun.size, firedFromGun.isPlayerGun);
         gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
-        rb.isKinematic = true;
         StopAllCoroutines();
+        rb.isKinematic = true;
         MainManager.Pooling.ReturnBullet(transform, isPlayerBullet);
     }
 }

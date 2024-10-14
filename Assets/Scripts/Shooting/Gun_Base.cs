@@ -10,12 +10,14 @@ public class Gun_Base : MonoBehaviour
     bool bulletInChamber = true;
     bool isReloading;
 
-    AudioSource gunAudio;
+    [Header("Animations")]
+    public float realReloadTime;
+    public Animator gunAnimator;
+    public ParticleSystem muzzleParticles;
 
     private void Start()
     {
         bulletsInMagazine = gun.magazineSize;
-        gunAudio = GetComponent<AudioSource>();
     }
 
     private IEnumerator FireRate()
@@ -43,8 +45,11 @@ public class Gun_Base : MonoBehaviour
     {
         if (!bulletInChamber || isReloading)
         {
-            if (MainManager.Shooting.ammo[gun] < 1 && !gunAudio.isPlaying)
-                PlaySoundEffect(gun.soundEmpty);
+            if (MainManager.Shooting.ammo[gun] < 1 && !MainManager.Shooting.gunAudio.isPlaying)
+            {
+                MainManager.Shooting.PlayAudio(gun.soundEmpty);
+                gunAnimator?.SetTrigger("ShootEmpty");
+            }
 
             return;
         }
@@ -63,7 +68,9 @@ public class Gun_Base : MonoBehaviour
         //EFFECTS
         MainManager.Effects.ShootEffects(gun.cameraShakeIntensity);
         MainManager.Effects.CameraShake(gun.cameraShakeIntensity, gun.cameraShakeDuration);
-        PlaySoundEffect(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
+        MainManager.Shooting.PlayAudio(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
+        gunAnimator?.SetTrigger("Shoot");
+        muzzleParticles?.Play();
 
         //CHECK AMMO
         CheckAmmoState();
@@ -91,7 +98,7 @@ public class Gun_Base : MonoBehaviour
 
     public virtual void ShootHitPoint(RaycastHit Hit)
     {
-        Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal, gun.size);
+        Hit.collider.GetComponent<Object_Base>()?.Damage(gun.damage, Hit.point, Hit.normal, gun.size, gun.isPlayerGun);
 
         foreach (Mod_Base mod in gun.ModifiersColission)
         {
@@ -116,18 +123,32 @@ public class Gun_Base : MonoBehaviour
         if (MainManager.Shooting.ammo[gun] == 0 || isReloading || bulletsInMagazine == gun.magazineSize)
             return;
 
-        PlaySoundEffect(gun.soundReload);
+        gunAnimator?.SetTrigger("Reload");
+
         StartCoroutine(WaitReload());
     }
 
-    public virtual void PlaySoundEffect(AudioClip clip)
+    public virtual void SetAnimationFloat(string state, float value)
     {
-        gunAudio.pitch = Random.Range(0.97f, 1.03f);
-        gunAudio.PlayOneShot(clip);
+        gunAnimator?.SetFloat(state, value);
     }
 
-    private void OnDisable()
+    public virtual void UpdateAnimationReload()
+    {
+        float newReloadSpeed = realReloadTime / (gun.reloadSpeed - 0.2f);
+        gunAnimator?.SetFloat("reloadSpeed", newReloadSpeed);
+    }
+
+    private void OnEnable()
     {
         isReloading = false;
+        gunAnimator = GetComponentInChildren<Animator>();
+        UpdateAnimationReload();
+        //gunAnimator?.Play("Idle", 0, 0f);
+
+        if (bulletInChamber == false)
+        {
+            CheckAmmoState();
+        }
     }
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9130291347364902594}
   - component: {fileID: 4142196366606361456}
   - component: {fileID: 8746334433734227675}
-  - component: {fileID: 582904351190643194}
   - component: {fileID: 3956551217253355126}
   - component: {fileID: 3390108401047539995}
   - component: {fileID: 7452902796782686270}
@@ -87,22 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &582904351190643194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 118210747675994384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f7893bae5fe9147a12052861a612b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun: {fileID: 11400000, guid: 86c7048267817aa4e83cc24a24fa1220, type: 2}
-  bulletsInMagazine: 0
-  numberOfPellets: 9
-  spread: 0.1
 --- !u!65 &3956551217253355126
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -163,5 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 964fc2d743a174c4197c2b7ceea30b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupName: Shotgun
   pickupGun: {fileID: 11400000, guid: 86c7048267817aa4e83cc24a24fa1220, type: 2}
