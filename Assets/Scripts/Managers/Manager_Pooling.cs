@@ -32,6 +32,7 @@ public class Manager_Pooling : MonoBehaviour
 
     [Header("Enemies")]
     [SerializeField] List<EnemyTemplate> allEnemies = new List<EnemyTemplate>();
+    [SerializeField] List<GameObject> allEnemiesPrefabs = new List<GameObject>();
     Dictionary<EnemyTemplate, List<Transform>> enemies = new Dictionary<EnemyTemplate, List<Transform>>();
     [SerializeField] int enemyPoolSize;
     [SerializeField] Transform enemyParent;
@@ -89,21 +90,37 @@ public class Manager_Pooling : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        foreach (EnemyTemplate enem in allEnemies)
+        for(int i = 0; i < allEnemies.Count; i++)
         {
             List<Transform> tempList = new List<Transform>();
-            for (int i = 0; i < enemyPoolSize; i++)
+            for (int j = 0; j < enemyPoolSize; j++)
             {
-                tempList.Add(Instantiate(enem.enemyPrefab, enemyParent).transform);
-                tempList[i].GetComponent<AIThink_Base>().SetupValues();
+                tempList.Add(Instantiate(allEnemiesPrefabs[i], enemyParent).transform);
+                tempList[j].GetComponent<AIThink_Base>().SetupValues();
             }
 
-            enemies.Add(enem, tempList);
-            foreach (Transform enemObject in enemies[enem])
+            enemies.Add(allEnemies[i], tempList);
+            foreach (Transform enemObject in enemies[allEnemies[i]])
             {
                 enemObject.gameObject.SetActive(false);
             }
         }
+
+        //foreach (EnemyTemplate enem in allEnemies)
+        //{
+        //    List<Transform> tempList = new List<Transform>();
+        //    for (int i = 0; i < enemyPoolSize; i++)
+        //    {
+        //        tempList.Add(Instantiate(enem.enemyPrefab, enemyParent).transform);
+        //        tempList[i].GetComponent<AIThink_Base>().SetupValues();
+        //    }
+
+        //    enemies.Add(enem, tempList);
+        //    foreach (Transform enemObject in enemies[enem])
+        //    {
+        //        enemObject.gameObject.SetActive(false);
+        //    }
+        //}
     }
 
     private void SpawnEnemyParticles()

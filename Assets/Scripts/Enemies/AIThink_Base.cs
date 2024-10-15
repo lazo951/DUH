@@ -71,7 +71,8 @@ public class AIThink_Base : MonoBehaviour
             }
         }
 
-        StartCoroutine(Think());
+        if(gameObject.activeInHierarchy)
+            StartCoroutine(Think());
     }
 
     public void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal, bool isDamagedByPlayer)

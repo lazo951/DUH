@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 3367594142985208245}
   - component: {fileID: 173833902363896791}
   - component: {fileID: 3344963940438868714}
-  - component: {fileID: 1069260145369193265}
+  - component: {fileID: 4232735066062889257}
   - component: {fileID: 3553212098264137341}
   m_Layer: 0
-  m_Name: EnemyFlying
+  m_Name: EnemyFlyingKamikaze
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,7 +101,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 2
-  m_AngularDrag: 3
+  m_AngularDrag: 0.1
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a20e87c1dc7652459a7d824c1da2fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: {fileID: 11400000, guid: d693091dae5f39f44ae6ad01905be383, type: 2}
+  enemyType: {fileID: 11400000, guid: 1991d1fa10512d94db23a02ea8f01e47, type: 2}
   health: 0
   bloodParticles: {fileID: 6698573094486123640}
   colideLayer:
@@ -152,10 +152,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073745665
   flyRandomness: 4
-  flyHeight: 6
-  heightRandomness: 2
+  flyHeight: 2
+  heightRandomness: 1
   maxRecursions: 5
---- !u!114 &1069260145369193265
+--- !u!114 &4232735066062889257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,14 +164,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 786952266029758472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97246b1699b332543b92ce059356b75b, type: 3}
+  m_Script: {fileID: 11500000, guid: d6511e1207e1a754ba9cdcd27bea1dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 11400000, guid: 0e46e2f052e86184f8cccc87b2b1c18c, type: 2}
+  gun: {fileID: 0}
   gunMuzzle: {fileID: 3262320380278425213}
-  particleMuzzle: {fileID: 453032029080189099}
+  particleMuzzle: {fileID: 0}
   bulletInChamber: 0
   scriptMain: {fileID: 0}
+  explosiveRadius: 3
+  explosiveDamage: 6
 --- !u!82 &3553212098264137341
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5393,7 +5395,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 6182227260685988735}
   - {fileID: 823783387812078415}
   m_Father: {fileID: 6311694529056726214}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10298,83 +10299,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1001 &8453892699100371040
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3262320380278425213}
-    m_Modifications:
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6745904844607052338, guid: bf53a59d91e0f734eb6195082d3395f8,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemyMuzzleRanged
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bf53a59d91e0f734eb6195082d3395f8, type: 3}
---- !u!198 &453032029080189099 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8294289815652245707, guid: bf53a59d91e0f734eb6195082d3395f8,
-    type: 3}
-  m_PrefabInstance: {fileID: 8453892699100371040}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6182227260685988735 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2349168641377430303, guid: bf53a59d91e0f734eb6195082d3395f8,
-    type: 3}
-  m_PrefabInstance: {fileID: 8453892699100371040}
-  m_PrefabAsset: {fileID: 0}

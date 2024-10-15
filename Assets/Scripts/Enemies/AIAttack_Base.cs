@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class AIAttack_Base : MonoBehaviour
@@ -9,8 +8,8 @@ public class AIAttack_Base : MonoBehaviour
     public Transform gunMuzzle;
     public ParticleSystem particleMuzzle;
 
-    bool bulletInChamber = true;
-    AIThink_Base scriptMain;
+    [HideInInspector] public bool bulletInChamber;
+    [HideInInspector] public AIThink_Base scriptMain;
 
     public virtual void SetupValues(AIThink_Base scr)
     {
@@ -37,11 +36,16 @@ public class AIAttack_Base : MonoBehaviour
             mod.ModifyWeaponShoot(gunMuzzle, transform.gameObject);
         }
 
-        scriptMain.PlaySound(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
-        particleMuzzle.Play();
+        PlayEffects();
 
         CheckProximity(gunMuzzle.position, gunMuzzle);
         StartCoroutine(FireRate());
+    }
+
+    public virtual void PlayEffects()
+    {
+        scriptMain.PlaySound(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
+        particleMuzzle.Play();
     }
 
     public virtual void CheckProximity(Vector3 spawnPos, Transform spawnSource)
@@ -80,6 +84,11 @@ public class AIAttack_Base : MonoBehaviour
     private IEnumerator FireRate()
     {
         yield return new WaitForSeconds(60f / gun.rateOfFireRPM);
+        bulletInChamber = true;
+    }
+
+    private void OnEnable()
+    {
         bulletInChamber = true;
     }
 }

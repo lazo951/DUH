@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69c3b270d59e3b74f8c4cab772c30cc1, type: 3}
-  m_Name: EnemyFlying
+  m_Name: EnemyFlyingKamikaze
   m_EditorClassIdentifier: 
-  enemyName: Flying
-  startHealth: 4
-  moveSpeed: 100
-  turnSpeed: 2
-  aimSpeed: 0
+  enemyName: Kamikaze
+  startHealth: 1
+  moveSpeed: 7
+  turnSpeed: 5
   thinkFrequency: 0.2
-  preferredDistanceToPlayer: 15
+  preferredDistanceToPlayer: 3
   glowEffectColor: {r: 1, g: 1, b: 1, a: 1}
   glowEffectDuration: 0.1
   glowEffectStrength: 1

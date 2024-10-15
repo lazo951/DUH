@@ -14,7 +14,7 @@ public class AIMove_Flying : AIMove_Base
     
     public int maxRecursions;
 
-    Vector3 correctedDestination;
+    Vector3 addedRandomness, correctedDestination;
     Quaternion finalRotation;
 
     public override void SetupValues(float moveSpeed, float turnSpeed)
@@ -35,7 +35,9 @@ public class AIMove_Flying : AIMove_Base
     {
         counter++;
         correctedDestination = destination;
-        correctedDestination += Random.insideUnitSphere * flyRandomness;
+        addedRandomness = Random.insideUnitSphere * flyRandomness;
+        addedRandomness.y = Mathf.Abs(addedRandomness.y);
+        correctedDestination += addedRandomness;
 
         RaycastHit hit;
         if (Physics.Raycast(correctedDestination, Vector3.down, out hit, 100, colideLayer, QueryTriggerInteraction.Ignore))
@@ -62,13 +64,27 @@ public class AIMove_Flying : AIMove_Base
 
     private void AddForceTowards(Vector3 destination)
     {
+        float dist = Vector3.Distance(transform.position, destination);
+        dist = Mathf.Clamp(dist, 0f, 3f);
+
         Vector3 direction = destination - transform.position;
-        rb.AddForce(direction * moveForce, ForceMode.Force);
+        rb.AddForce(direction * moveForce * Time.fixedDeltaTime * dist, ForceMode.Force);
     }
 
     private void FixedUpdate()
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, finalRotation, turnForce * Time.deltaTime);
+
+        LimitVelocity();
+    }
+
+    private void LimitVelocity()
+    {
+        if (rb.velocity.magnitude > moveForce)
+        {
+            Vector3 limitedVel = rb.velocity.normalized * moveForce;
+            rb.velocity = limitedVel;
+        }
     }
 
     public override void LookAt(Vector3 position)
