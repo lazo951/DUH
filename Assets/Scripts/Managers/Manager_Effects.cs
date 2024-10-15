@@ -38,7 +38,7 @@ public class Manager_Effects : MonoBehaviour
         scriptCamera.AddRecoil(intensity, duration);
     }
 
-    public void PlayerDamageIndicator()
+    public void PlayerDamageIndicator(Vector3 playerPos, Vector3 bulletPos)
     {
         //
     }

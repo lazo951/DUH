@@ -23,7 +23,9 @@ public class AIThink_Base : MonoBehaviour
         mat = GetComponent<MeshRenderer>().material;
         aiMove = GetComponent<AIMove_Base>();
         aiAttack = GetComponent<AIAttack_Base>();
+
         aiMove.SetupValues(enemyType.moveSpeed, enemyType.turnSpeed);
+        aiAttack.SetupValues(this);
 
         aud = GetComponent<AudioSource>();
     }
@@ -44,8 +46,9 @@ public class AIThink_Base : MonoBehaviour
         float dist = Vector3.Distance(transform.position, MainManager.Player.player.position);
         if (dist > enemyType.preferredDistanceToPlayer)
         {
-            Vector3 direction = MainManager.Player.player.position - transform.position;
-            aiMove.MoveTo(transform.position + direction.normalized * 5, 0);
+            //Vector3 direction = MainManager.Player.player.position - transform.position;
+            //aiMove.MoveTo(transform.position + direction.normalized * 5, 0);
+            aiMove.MoveTo(MainManager.Player.player.position, 0);
         }
         else
         {
@@ -94,6 +97,11 @@ public class AIThink_Base : MonoBehaviour
 
         bloodParticles.transform.position = impactPoint;
         bloodParticles.Play();
+    }
+
+    public virtual void PlaySound(AudioClip clip)
+    {
+        aud.PlayOneShot(clip);
     }
 
     private void OnDisable()

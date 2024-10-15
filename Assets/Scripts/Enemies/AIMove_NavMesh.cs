@@ -36,8 +36,26 @@ public class AIMove_NavMesh : AIMove_Base
         agent.isStopped = false;
         NavMeshHit correctedPos;
 
-        if (NavMesh.SamplePosition(destination, out correctedPos, 5, NavMesh.AllAreas))
-            agent.SetDestination(correctedPos.position);
+        if (NavMesh.SamplePosition(destination, out correctedPos, 3, NavMesh.AllAreas))
+        {
+            NavMeshPath newPath = new NavMeshPath();
+            NavMesh.CalculatePath(transform.position, correctedPos.position, NavMesh.AllAreas, newPath);
+            if(newPath.status == NavMeshPathStatus.PathComplete)
+            {
+                agent.SetPath(newPath);
+                LookAt(agent.steeringTarget);
+                return;
+            }
+            else
+            {
+                agent.isStopped = true;
+            }
+        }
+        else
+        {
+            agent.isStopped = true;
+        }
+
 
         LookAt(correctedPos.position);
     }
@@ -78,6 +96,8 @@ public class AIMove_NavMesh : AIMove_Base
         Vector3 tempPos = position;
         tempPos.y = transform.position.y;
         Vector3 direction = tempPos - transform.position;
-        finalRotation = Quaternion.LookRotation(direction.normalized);
+
+        if(direction != Vector3.zero)
+            finalRotation = Quaternion.LookRotation(direction.normalized);
     }
 }

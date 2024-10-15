@@ -7,8 +7,15 @@ public class AIAttack_Base : MonoBehaviour
 {
     public GunTemplate gun;
     public Transform gunMuzzle;
+    public ParticleSystem particleMuzzle;
 
     bool bulletInChamber = true;
+    AIThink_Base scriptMain;
+
+    public virtual void SetupValues(AIThink_Base scr)
+    {
+        scriptMain = scr;
+    }
 
     public virtual void AimAt(Transform target)
     {
@@ -30,8 +37,8 @@ public class AIAttack_Base : MonoBehaviour
             mod.ModifyWeaponShoot(gunMuzzle, transform.gameObject);
         }
 
-        //play audio
-        //play muzzle flash
+        scriptMain.PlaySound(gun.soundShooting[Random.Range(0, gun.soundShooting.Length)]);
+        particleMuzzle.Play();
 
         CheckProximity(gunMuzzle.position, gunMuzzle);
         StartCoroutine(FireRate());
