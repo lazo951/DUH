@@ -17145,6 +17145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUpdated
       objectReference: {fileID: 0}
+    - target: {fileID: 1810489035107927971, guid: 597b576dccd7bca42b423125e5d65595,
+        type: 3}
+      propertyPath: jumpTimes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2500124746884189041, guid: 597b576dccd7bca42b423125e5d65595,
         type: 3}
       propertyPath: m_Layer

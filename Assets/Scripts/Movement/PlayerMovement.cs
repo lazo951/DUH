@@ -15,6 +15,8 @@ public class PlayerMovement : InterpolatedTransform
     private float gravity = 20.0f;
     [SerializeField]
     private float antiBumpFactor = .75f;
+    [SerializeField]
+    private int jumpTimes = 1;
     [HideInInspector]
     public Vector3 moveDirection = Vector3.zero;
     [HideInInspector]
@@ -31,6 +33,7 @@ public class PlayerMovement : InterpolatedTransform
     private bool forceGravity;
     private float forceTime = 0;
     private float jumpPower;
+    public int jumpCounter = 1;
     UnityEvent onReset = new UnityEvent();
 
     public float speed;
@@ -44,6 +47,7 @@ public class PlayerMovement : InterpolatedTransform
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        jumpCounter = jumpTimes - 1;
     }
 
     public void AddToReset(UnityAction call)
@@ -79,6 +83,11 @@ public class PlayerMovement : InterpolatedTransform
 
         if (forceTime > 0)
             forceTime -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+             AerialJump(Vector3.up, 1f);
+        }
     }
 
     public override void FixedUpdate()
@@ -105,10 +114,12 @@ public class PlayerMovement : InterpolatedTransform
         speed = (!sprint) ? walkSpeed : runSpeed;
         if (crouching) speed = crouchSpeed;
 
+        
         if (grounded)
         {
             moveDirection = new Vector3(input.x, -antiBumpFactor, input.y);
             moveDirection = transform.TransformDirection(moveDirection) * speed;
+            jumpCounter = jumpTimes;
             UpdateJump();
         }
         else
@@ -118,9 +129,11 @@ public class PlayerMovement : InterpolatedTransform
             jumpedDir += adjust * Time.fixedDeltaTime * jumpPower * 2f;
             jumpedDir = Vector3.ClampMagnitude(jumpedDir, jumpPower);
             moveDirection.x = jumpedDir.x;
-            moveDirection.z = jumpedDir.z;
+            moveDirection.z = jumpedDir.z;            
         }
+
         
+
         // Apply gravity
         moveDirection.y -= gravity * Time.deltaTime;
         // Move the controller, and set grounded true or false depending on whether we're standing on something
@@ -171,6 +184,23 @@ public class PlayerMovement : InterpolatedTransform
     public void Jump(Vector3 dir, float mult)
     {
         jump = dir * mult;
+        if (jumpCounter > 0)
+            jumpCounter--;
+    }
+
+    public void AerialJump(Vector3 dir, float mult)
+    {
+        if (grounded)
+            return;
+
+        if (jumpCounter <= 0)
+            return;
+
+        jump = dir * mult;
+        if (jumpCounter > 0)
+            jumpCounter--;
+
+        UpdateJump();
     }
 
     public void UpdateJump()
@@ -183,12 +213,14 @@ public class PlayerMovement : InterpolatedTransform
             if (dir.z != 0) moveDirection.z = dir.z;
 
             Vector3 move = moveDirection;
-            jumpedDir = move; move.y = 0;
+            jumpedDir = move; 
+            move.y = 0;
             jumpPower = Mathf.Min(move.magnitude, jumpSpeed);
             jumpPower = Mathf.Max(jumpPower, walkSpeed);
         }
         else
             jumpedDir = Vector3.zero;
+          
         jump = Vector3.zero;
     }
 
@@ -197,6 +229,11 @@ public class PlayerMovement : InterpolatedTransform
         forceTime = time;
         forceGravity = applyGravity;
         moveDirection = direction * speed;
+    }
+
+    public void ResetJumpCounter()
+    {
+        jumpCounter = jumpTimes;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)

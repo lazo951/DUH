@@ -232,6 +232,7 @@ public class PlayerController : MonoBehaviour
             }
 
             movement.Jump(Vector3.up, 1f);
+            movement.ResetJumpCounter();
             playerInput.ResetJump();
         }
     }

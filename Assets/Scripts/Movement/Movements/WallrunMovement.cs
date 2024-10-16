@@ -33,6 +33,7 @@ public class WallrunMovement : MovementType
             Vector3 right = Vector3.Cross(forward, Vector3.up) * wallDir;
             Vector3 wallJump = (Vector3.up * (s + 0.5f) + forward * s * 1.5f + right * (s + 0.5f)).normalized;
             movement.Jump(wallJump, (s + 1f));
+            movement.ResetJumpCounter();
             playerInput.ResetJump();
             player.ChangeStatus(Status.walking);
         }
