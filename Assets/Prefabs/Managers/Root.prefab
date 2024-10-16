@@ -2323,7 +2323,11 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 50
   maxHealth: 100
+  jumpTimes: 0
+  speedModifier: 1
   txtHealth: {fileID: 4371449110544014294}
+  ModifiersPickup: []
+  speedIncrement: 0.1
 --- !u!114 &1782974180798816381
 MonoBehaviour:
   m_ObjectHideFlags: 0

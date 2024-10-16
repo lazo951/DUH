@@ -17147,13 +17147,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1810489035107927971, guid: 597b576dccd7bca42b423125e5d65595,
         type: 3}
-      propertyPath: jumpTimes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2500124746884189041, guid: 597b576dccd7bca42b423125e5d65595,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
+      propertyPath: jumpSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2795422624091773589, guid: 597b576dccd7bca42b423125e5d65595,
         type: 3}
@@ -17205,16 +17200,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3745586611923356837, guid: 597b576dccd7bca42b423125e5d65595,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5873907177674264186, guid: 597b576dccd7bca42b423125e5d65595,
-        type: 3}
-      propertyPath: m_Layer
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17235,7 +17220,11 @@ MonoBehaviour:
   player: {fileID: 7085721662817028735}
   health: 50
   maxHealth: 100
+  jumpTimes: 0
+  speedModifier: 1
   txtHealth: {fileID: 1942185761}
+  ModifiersPickup: []
+  speedIncrement: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

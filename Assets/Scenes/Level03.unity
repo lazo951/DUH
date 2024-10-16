@@ -1140,6 +1140,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 896916070}
+    - target: {fileID: 901558887074345228, guid: 2989fed040fc00b468dae37f4757b7ba,
+        type: 3}
+      propertyPath: jumpTimes
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1782974180798816381, guid: 2989fed040fc00b468dae37f4757b7ba,
         type: 3}
       propertyPath: allGunsTransforms.Array.data[0]
