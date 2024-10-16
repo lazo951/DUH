@@ -24,7 +24,7 @@ public class AIMove_Base : MonoBehaviour
         //
     }
 
-    public virtual void LookAt(Vector3 position)
+    public virtual void LookAt(Vector3 position, float aimSpeed)
     {
         //
     }

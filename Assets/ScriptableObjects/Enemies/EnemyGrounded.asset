@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyName: Grounded
   startHealth: 2
   moveSpeed: 4
-  turnSpeed: 5
-  aimSpeed: 0
+  turnSpeed: 4
+  aimSpeed: 6
   thinkFrequency: 0.2
   preferredDistanceToPlayer: 15
   glowEffectColor: {r: 1, g: 1, b: 1, a: 1}

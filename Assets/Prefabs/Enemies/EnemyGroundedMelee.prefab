@@ -293,6 +293,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   jumpSpeed: 1
+  wanderDistance: 5
 --- !u!114 &5549347145788385867
 MonoBehaviour:
   m_ObjectHideFlags: 0

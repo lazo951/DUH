@@ -294,6 +294,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   jumpSpeed: 1
+  wanderDistance: 5
 --- !u!114 &6333866199938753919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +310,8 @@ MonoBehaviour:
   gun: {fileID: 11400000, guid: 0e46e2f052e86184f8cccc87b2b1c18c, type: 2}
   gunMuzzle: {fileID: 6063836279920796885}
   particleMuzzle: {fileID: 3404047305834865096}
+  bulletInChamber: 0
+  scriptMain: {fileID: 0}
 --- !u!82 &5338822667275538197
 AudioSource:
   m_ObjectHideFlags: 0

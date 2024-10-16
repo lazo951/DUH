@@ -8,6 +8,7 @@ public class Manager_Effects : MonoBehaviour
 {
     [SerializeField] CameraMovement scriptCamera;
     [SerializeField] Controller_Crosshair scriptCrosshair;
+    [SerializeField] Controller_DamageIndicator scriptIndicator;
     [SerializeField] AudioSource hitmarkerAudio;
 
     [SerializeField] float pickupFadeTime;
@@ -38,9 +39,34 @@ public class Manager_Effects : MonoBehaviour
         scriptCamera.AddRecoil(intensity, duration);
     }
 
-    public void PlayerDamageIndicator(Vector3 playerPos, Vector3 bulletPos)
+    public void PlayerDamageIndicator(Vector3 playerPos, Vector3 bulletPos, Vector3 playerForward)
     {
-        //
+        Vector3 dmgDir;
+        Vector3 leftRight = bulletPos;
+        leftRight.y = playerPos.y;
+
+        dmgDir = leftRight - playerPos;
+        float angleLeftRight = Vector3.Angle(dmgDir, playerForward);
+
+        Vector3 upDown = bulletPos;
+        upDown.x = playerPos.x;
+        dmgDir = upDown - playerPos;
+        float angleUpDown = Vector3.Angle(dmgDir, playerForward);
+
+        if(angleLeftRight > angleUpDown)
+        {
+            if(leftRight.x < playerPos.x)
+                scriptIndicator.ShowIndicator(0);
+            else
+                scriptIndicator.ShowIndicator(1);
+        }
+        else
+        {
+            scriptIndicator.ShowIndicator(2);
+        }
+
+        //Vector3 dmgDir = bulletPos - playerPos;
+        //scriptIndicator.ShowIndicatorMesh(Quaternion.LookRotation(dmgDir.normalized));
     }
 
     public void UIDisplayPickup(string pickupName)

@@ -101,7 +101,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 2
-  m_AngularDrag: 0.1
+  m_AngularDrag: 3
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -152,7 +152,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1073745665
   flyRandomness: 4
-  flyHeight: 2
+  flyHeight: 1.5
   heightRandomness: 1
   maxRecursions: 5
 --- !u!114 &4232735066062889257

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AIMove_Flying : AIMove_Base
 {
     Rigidbody rb;
-    float moveForce, turnForce;
+    float moveForce, turnForce, defaultTurnForce;
 
     public LayerMask colideLayer;
     public float flyRandomness;
@@ -22,6 +22,7 @@ public class AIMove_Flying : AIMove_Base
         rb = GetComponent<Rigidbody>();
         moveForce = moveSpeed;
         turnForce = turnSpeed;
+        defaultTurnForce = turnSpeed;
 
         finalRotation = Quaternion.identity;
     }
@@ -58,7 +59,7 @@ public class AIMove_Flying : AIMove_Base
         //    return;
         //}
 
-        LookAt(correctedDestination);
+        LookAt(correctedDestination, defaultTurnForce);
         AddForceTowards(correctedDestination);
     }
 
@@ -87,8 +88,10 @@ public class AIMove_Flying : AIMove_Base
         }
     }
 
-    public override void LookAt(Vector3 position)
+    public override void LookAt(Vector3 position, float aimSpeed)
     {
+        turnForce = aimSpeed;
+
         Vector3 direction = position - transform.position;
         finalRotation = Quaternion.LookRotation(direction.normalized);
     }

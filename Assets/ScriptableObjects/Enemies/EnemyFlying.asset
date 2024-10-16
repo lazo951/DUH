@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Flying
   startHealth: 4
-  moveSpeed: 100
+  moveSpeed: 150
   turnSpeed: 2
-  aimSpeed: 0
+  aimSpeed: 8
   thinkFrequency: 0.2
   preferredDistanceToPlayer: 15
   glowEffectColor: {r: 1, g: 1, b: 1, a: 1}

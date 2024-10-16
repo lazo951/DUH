@@ -36,12 +36,49 @@ public class AIThink_Base : MonoBehaviour
         aiMove.SetPosition(pos);
 
         gameObject.SetActive(true);
-        StartCoroutine(Think());
+        InvokeRepeating(nameof(Think), enemyType.thinkFrequency, enemyType.thinkFrequency);
+        //StartCoroutine(Think());
     }
 
-    private IEnumerator Think()
+    //private IEnumerator Think()
+    //{
+    //    yield return new WaitForSeconds(enemyType.thinkFrequency);
+
+    //    float dist = Vector3.Distance(transform.position, MainManager.Player.player.position);
+    //    if (dist > enemyType.preferredDistanceToPlayer)
+    //    {
+    //        //Vector3 direction = MainManager.Player.player.position - transform.position;
+    //        //aiMove.MoveTo(transform.position + direction.normalized * 5, 0);
+    //        aiMove.MoveTo(MainManager.Player.player.position, 0);
+    //    }
+    //    else
+    //    {
+    //        if (Physics.Raycast(transform.position, MainManager.Player.player.position - transform.position, out hit, enemyType.preferredDistanceToPlayer, colideLayer, QueryTriggerInteraction.Ignore))
+    //        {
+    //            if(hit.collider.gameObject.CompareTag("Player"))
+    //            {
+    //                aiMove.Stop();
+    //                aiMove.LookAt(MainManager.Player.player.position, enemyType.aimSpeed);
+    //                aiAttack.AimAt(MainManager.Player.player);
+    //            }
+    //            else
+    //            {
+    //                aiMove.MoveTo(transform.position + Random.insideUnitSphere * 5f, 0);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            aiMove.MoveTo(transform.position + Random.insideUnitSphere * 5f, 0);
+    //        }
+    //    }
+
+    //    if(gameObject.activeInHierarchy)
+    //        StartCoroutine(Think());
+    //}
+
+    public virtual void Think()
     {
-        yield return new WaitForSeconds(enemyType.thinkFrequency);
+        //Debug.Log("Thinking");
 
         float dist = Vector3.Distance(transform.position, MainManager.Player.player.position);
         if (dist > enemyType.preferredDistanceToPlayer)
@@ -54,10 +91,10 @@ public class AIThink_Base : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, MainManager.Player.player.position - transform.position, out hit, enemyType.preferredDistanceToPlayer, colideLayer, QueryTriggerInteraction.Ignore))
             {
-                if(hit.collider.gameObject.CompareTag("Player"))
+                if (hit.collider.gameObject.CompareTag("Player"))
                 {
                     aiMove.Stop();
-                    aiMove.LookAt(MainManager.Player.player.position);
+                    aiMove.LookAt(MainManager.Player.player.position, enemyType.aimSpeed);
                     aiAttack.AimAt(MainManager.Player.player);
                 }
                 else
@@ -70,9 +107,6 @@ public class AIThink_Base : MonoBehaviour
                 aiMove.MoveTo(transform.position + Random.insideUnitSphere * 5f, 0);
             }
         }
-
-        if(gameObject.activeInHierarchy)
-            StartCoroutine(Think());
     }
 
     public void Damage(float dmg, Vector3 impactPoint, Vector3 faceNormal, bool isDamagedByPlayer)
@@ -108,6 +142,8 @@ public class AIThink_Base : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
+        CancelInvoke();
+
         MainManager.Pooling.PlaceParticle(enemyParticleType.die, transform.position);
         MainManager.Pooling.ReturnEnemy(enemyType, transform);
     }

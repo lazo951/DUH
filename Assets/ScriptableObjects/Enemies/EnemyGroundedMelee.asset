@@ -15,7 +15,8 @@ MonoBehaviour:
   enemyName: GroundedMelee
   startHealth: 2
   moveSpeed: 4
-  turnSpeed: 6
+  turnSpeed: 4
+  aimSpeed: 6
   thinkFrequency: 0.2
   preferredDistanceToPlayer: 3
   glowEffectColor: {r: 1, g: 1, b: 1, a: 1}

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Kamikaze
   startHealth: 1
-  moveSpeed: 7
-  turnSpeed: 5
+  moveSpeed: 200
+  turnSpeed: 2
+  aimSpeed: 8
   thinkFrequency: 0.2
   preferredDistanceToPlayer: 3
   glowEffectColor: {r: 1, g: 1, b: 1, a: 1}
