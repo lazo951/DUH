@@ -7,9 +7,9 @@ public class Controller_DamageIndicator : MonoBehaviour
 {
     [SerializeField] CanvasGroup groupDamageEffect;
     [SerializeField] CanvasGroup[] groupDamageDirection;
-    [SerializeField] Transform indicatorArrow;
-    [SerializeField] float indicatorDuration;
-    [SerializeField] float groupDuration, groupFadeSpeed;
+
+    [SerializeField] float damageEffectDuration, damageEffectFadeSpeed, damageEffectAlpha;
+    [SerializeField] float directionEffectDuration, directionEffectFadeSpeed, directionEffectAlpha;
 
     //public void ShowIndicatorMesh(Quaternion rot)
     //{
@@ -33,40 +33,33 @@ public class Controller_DamageIndicator : MonoBehaviour
 
     public void ShowIndicator(int pos)
     {
-        for(int i = 0; i < groupDamageDirection.Length; i++)
-        {
-            if(i == pos)
-                groupDamageDirection[i].gameObject.SetActive(true);
-            else
-                groupDamageDirection[i].gameObject.SetActive(false);
-        }
-        
-        ToggleGroup();
+        ShowGroupDirection(pos);
+        ShowGroupDamage();
     }
 
-    private void ToggleGroup()
+    private void ShowGroupDamage()
     {
         DOTween.Kill("Group");
-        groupDamageEffect.DOFade(0.25f, groupFadeSpeed).SetId("Group");
+        groupDamageEffect.DOFade(damageEffectAlpha, damageEffectFadeSpeed).SetId("Group");
 
         StartCoroutine(waitFade());
         IEnumerator waitFade()
         {
-            yield return new WaitForSeconds(groupDuration);
-            groupDamageEffect.DOFade(0, groupFadeSpeed).SetId("Group");
+            yield return new WaitForSeconds(damageEffectDuration);
+            groupDamageEffect.DOFade(0, damageEffectFadeSpeed).SetId("Group");
         }
     }
 
-    //private void ToggleGroup()
-    //{
-    //    DOTween.Kill("Group");
-    //    groupDamageEffect.DOFade(0.25f, groupFadeSpeed).SetId("Group");
+    private void ShowGroupDirection(int pos)
+    {
+        DOTween.Kill("Dir");
+        groupDamageDirection[pos].DOFade(directionEffectAlpha, directionEffectFadeSpeed).SetId("Dir");
 
-    //    StartCoroutine(waitFade());
-    //    IEnumerator waitFade()
-    //    {
-    //        yield return new WaitForSeconds(groupDuration);
-    //        groupDamageEffect.DOFade(0, groupFadeSpeed).SetId("Group");
-    //    }
-    //}
+        StartCoroutine(waitFade());
+        IEnumerator waitFade()
+        {
+            yield return new WaitForSeconds(directionEffectDuration);
+            groupDamageDirection[pos].DOFade(0, directionEffectFadeSpeed).SetId("Dir");
+        }
+    }
 }

@@ -91,4 +91,9 @@ public class AIAttack_Base : MonoBehaviour
     {
         bulletInChamber = true;
     }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
 }
