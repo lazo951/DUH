@@ -8424,11 +8424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925eb5f585d38e443b784f9fa5942700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 1
+  spawnInterval: 2
   spawnParticleDuration: 1
   spawnEnemies:
   - {fileID: 11400000, guid: 06b5e168a808ed445a4dd559dab10530, type: 2}
-  - {fileID: 11400000, guid: 0928fcab8d9fd95499d4da4419abb609, type: 2}
   - {fileID: 11400000, guid: d693091dae5f39f44ae6ad01905be383, type: 2}
   spawnPositions:
   - {fileID: 135852952}
@@ -11091,74 +11090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4923917eb369ce34ea0dcc6b8d63e7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1684429805
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5314878641548378086, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_Name
-      value: PickupShotgun_AmmoBig
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.2402887
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.6025553
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7348023650482143070, guid: a2b71a4d9a4431b4fad9992d83b3a312,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a2b71a4d9a4431b4fad9992d83b3a312, type: 3}
 --- !u!1 &1699884526
 GameObject:
   m_ObjectHideFlags: 0
@@ -12613,74 +12544,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865061658}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1888282004
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.172536
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.571494
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 60450656848514763, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 847338485508393026, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93,
-        type: 3}
-      propertyPath: m_Name
-      value: RiflePickup_BulletHoming
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9c5ff533fa2fe2f4f91ae121dcabcd93, type: 3}
 --- !u!4 &1900608995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2872582111294636081, guid: 597b576dccd7bca42b423125e5d65595,
@@ -14791,5 +14654,3 @@ SceneRoots:
   - {fileID: 202457387}
   - {fileID: 1830554634}
   - {fileID: 1416206462}
-  - {fileID: 1684429805}
-  - {fileID: 1888282004}

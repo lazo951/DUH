@@ -11,18 +11,19 @@ public class AIMove_NavMesh : AIMove_Base
     [SerializeField] float jumpSpeed;
     [SerializeField] float wanderDistance;
 
-    float turnSpeed, defaultTurnSpeed;
     Quaternion finalRotation;
     NavMeshPath newPath;
 
     public override void SetupValues(float moveSpeed, float turnSpeed)
     {
         newPath = new NavMeshPath();
+        this.moveSpeed = moveSpeed;
         this.turnSpeed = turnSpeed;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = moveSpeed;
         agent.angularSpeed = 0;
         defaultTurnSpeed = turnSpeed;
+        defaultMoveSpeed = moveSpeed;
 
         finalRotation = Quaternion.identity;
     }
@@ -64,9 +65,8 @@ public class AIMove_NavMesh : AIMove_Base
     private void Wander()
     {
         agent.isStopped = false;
-        if (newPath.status == NavMeshPathStatus.PathComplete)
+        if (newPath.status == NavMeshPathStatus.PathComplete && agent.hasPath)
         {
-            agent.SetPath(newPath);
             LookAt(agent.steeringTarget, defaultTurnSpeed);
         }
         else
@@ -126,5 +126,26 @@ public class AIMove_NavMesh : AIMove_Base
 
         if(direction != Vector3.zero)
             finalRotation = Quaternion.LookRotation(direction.normalized);
+    }
+
+    public override void ChangeSpeedPercent(int percentChange, float duration)
+    {
+        float timer = 0;
+        float change = 1f + (float)percentChange / 100f;
+        moveSpeed *= change;
+        agent.speed = moveSpeed;
+
+        StartCoroutine(effectDuration());
+        IEnumerator effectDuration()
+        {
+            while (timer < duration)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            moveSpeed = defaultMoveSpeed;
+            agent.speed = moveSpeed;
+        }
     }
 }

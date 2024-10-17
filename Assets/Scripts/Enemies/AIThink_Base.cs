@@ -37,7 +37,6 @@ public class AIThink_Base : MonoBehaviour
 
         gameObject.SetActive(true);
         InvokeRepeating(nameof(Think), enemyType.thinkFrequency, enemyType.thinkFrequency);
-        //StartCoroutine(Think());
     }
 
     //private IEnumerator Think()
@@ -78,8 +77,6 @@ public class AIThink_Base : MonoBehaviour
 
     public virtual void Think()
     {
-        //Debug.Log("Thinking");
-
         float dist = Vector3.Distance(transform.position, MainManager.Player.player.position);
         if (dist > enemyType.preferredDistanceToPlayer)
         {

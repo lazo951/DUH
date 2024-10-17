@@ -64,9 +64,6 @@ public class Manager_Effects : MonoBehaviour
         {
             scriptIndicator.ShowIndicator(2);
         }
-
-        //Vector3 dmgDir = bulletPos - playerPos;
-        //scriptIndicator.ShowIndicatorMesh(Quaternion.LookRotation(dmgDir.normalized));
     }
 
     public void UIDisplayPickup(string pickupName)

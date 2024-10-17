@@ -5,13 +5,11 @@ using UnityEngine;
 public class AIMove_Flying : AIMove_Base
 {
     Rigidbody rb;
-    float moveForce, turnForce, defaultTurnForce;
 
     public LayerMask colideLayer;
     public float flyRandomness;
     public float flyHeight;
-    public float heightRandomness;
-    
+    public float heightRandomness;  
     public int maxRecursions;
 
     Vector3 addedRandomness, correctedDestination;
@@ -20,9 +18,10 @@ public class AIMove_Flying : AIMove_Base
     public override void SetupValues(float moveSpeed, float turnSpeed)
     {
         rb = GetComponent<Rigidbody>();
-        moveForce = moveSpeed;
-        turnForce = turnSpeed;
-        defaultTurnForce = turnSpeed;
+        this.moveSpeed = moveSpeed;
+        this.turnSpeed = turnSpeed;
+        defaultTurnSpeed = turnSpeed;
+        defaultMoveSpeed = moveSpeed;
 
         finalRotation = Quaternion.identity;
     }
@@ -52,14 +51,7 @@ public class AIMove_Flying : AIMove_Base
             return;
         }
 
-        //float dist = Vector3.Distance(transform.position, correctedDestination);
-        //if (Physics.SphereCast(transform.position, 1.5f, correctedDestination, out hit, dist, colideLayer) && counter < maxRecursions)
-        //{
-        //    MoveTo(correctedDestination, counter);
-        //    return;
-        //}
-
-        LookAt(correctedDestination, defaultTurnForce);
+        LookAt(correctedDestination, defaultTurnSpeed);
         AddForceTowards(correctedDestination);
     }
 
@@ -69,30 +61,49 @@ public class AIMove_Flying : AIMove_Base
         dist = Mathf.Clamp(dist, 0f, 3f);
 
         Vector3 direction = destination - transform.position;
-        rb.AddForce(direction * moveForce * Time.fixedDeltaTime * dist, ForceMode.Force);
+        rb.AddForce(direction * moveSpeed * Time.fixedDeltaTime * dist, ForceMode.Force);
     }
 
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, finalRotation, turnForce * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, finalRotation, turnSpeed * Time.deltaTime);
 
         LimitVelocity();
     }
 
     private void LimitVelocity()
     {
-        if (rb.velocity.magnitude > moveForce)
+        if (rb.velocity.magnitude > moveSpeed)
         {
-            Vector3 limitedVel = rb.velocity.normalized * moveForce;
+            Vector3 limitedVel = rb.velocity.normalized * moveSpeed;
             rb.velocity = limitedVel;
         }
     }
 
     public override void LookAt(Vector3 position, float aimSpeed)
     {
-        turnForce = aimSpeed;
+        turnSpeed = aimSpeed;
 
         Vector3 direction = position - transform.position;
         finalRotation = Quaternion.LookRotation(direction.normalized);
+    }
+
+    public override void ChangeSpeedPercent(int percentChange, float duration)
+    {
+        float timer = 0;
+        float change = 1f + (float)percentChange / 100f;
+        moveSpeed *= change;
+
+        StartCoroutine(effectDuration());
+        IEnumerator effectDuration()
+        {
+            while (timer < duration)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+            moveSpeed = defaultMoveSpeed;
+        }
     }
 }

@@ -31,9 +31,9 @@ public class Controller_DamageIndicator : MonoBehaviour
     //    }
     //}
 
-    public void ShowIndicator(int pos)
+    public void ShowIndicator(int dir)
     {
-        ShowGroupDirection(pos);
+        ShowGroupDirection(dir);
         ShowGroupDamage();
     }
 
